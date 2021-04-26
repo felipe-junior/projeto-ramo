@@ -1,0 +1,12 @@
+### COMO UTILIZAR O PROJETO ###
+
+-Abra o cmd, navegue até o diretório da página do projeto
+
+-Use o comando npm install (este comando irá instalar as dependências que estão no package.json)
+
+## DEPENDENCIAS ##
+
+-express
+-ejs
+-sequelize
+-mysql
