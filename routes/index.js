@@ -1,5 +1,5 @@
 const rotas = require('express').Router()
-const home = require('../controllers/home')
+const home = require('./home')
 
 rotas.use("/", home)
 
