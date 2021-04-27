@@ -1,7 +1,7 @@
 const rota = require('express').Router()
 
-rota.get("/home", (req, res)=>{
-  res.render("index.ejs")
+rota.get("/", (req, res)=>{
+  res.render("index")
 })
 
 module.exports = rota
