@@ -4,5 +4,6 @@ const rotas = require('express').Router()
 const home = require('./home')
 
 rotas.use("/", home)
+rotas.use("/cadastrar", require("./cadastrar"))
 
 module.exports = rotas

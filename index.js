@@ -1,8 +1,13 @@
 const express = require('express')
 const app = express()
-const porta = 3001
+const database = require("./database/databaseConfig")
+const porta = 8080
 
-app.use(express.urlencoded())
+database.authenticate()
+.then(()=> console.log("Autenticado"))
+.catch((err)=>console.log("Erro "+ err))
+
+app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.set("view engine", "ejs")
 app.use(express.static("public"))
