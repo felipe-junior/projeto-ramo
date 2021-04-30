@@ -5,5 +5,6 @@ const home = require('./home')
 
 rotas.use("/", home)
 rotas.use("/cadastrar", require("./cadastrar"))
+rotas.use("/pergunta", require("./pergunta"))
 
 module.exports = rotas

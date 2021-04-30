@@ -1,0 +1,15 @@
+<%-include("partials/head.ejs")%>
+<body>
+    <h1>Realize sua Pergunta</h1>
+    <form action="/pergunta/salvarpergunta" method="POST">
+        <label>Título</label>
+        <input type="text" name="title" placeholder="Digite seu Título" class="form-control">
+        <br><br>
+        <label>Descrição</label>
+        <textarea type="text" name="desc" placeholder="Descreva a Pergunta" class="form-control"></textarea>
+        <button class="btn btn-primary">Perguntar</button>
+        <hr>
+        <a href="/">Página Home</a>
+    </form>    
+</body>
+</html>
