@@ -1,33 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Wolforum - Nova Pergunta</title>
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="perguntar.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/perguntar.css">
 </head>
 
 <body>
-    <header>
-        <nav id="navbar" class="container">
-            <a id="brand" href="index.html">WOLFÓRUM</a>
-
-            <ul>
-                <li>
-                    <form class="search" method="" action="">
-                        <input type="search" placeholder="Pesquisar">
-                        <button type="submit"><img src="public/assets/Grupo 87.svg" alt="Search button"></button>
-                    </form>
-                </li>
-                <li><a href="perguntar.html">Perguntar</a></li>
-                <li><a href="categorias.html">Categorias</a></li>
-                <li><a href="entrar.html">Entrar ou cadastrar-se</a></li>
-            </ul>
-        </nav>
-    </header>
+    <%-include("partials/header.ejs") %>
     
     <main class="container">
         <section id="new-ask">
@@ -59,21 +43,6 @@
         </section>
     </main>
 
-    <footer>
-        <section class="container" id="footer">
-            <h2>Forum</h2>
-            
-            <ul>
-                <li><a href="perguntar.html">Perguntar</a></li>
-                <li><a href="categorias.html">Categorias</a></li>
-                <li><a href="entrar.html">Entrar </a></li>
-                <li><a href="cadastrar.html">Cadastrar-se</a></li>
-            </ul>
-
-            <hr>
-
-            <span>&#169; Wolfbyte Trainees. Todos os direitos reservados</span>
-        </section>
-    </footer>
+    <%-include("partials/footer.ejs") %>
 </body>
 </html>

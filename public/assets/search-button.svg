@@ -1,0 +1,24 @@
+<svg id="Grupo_87" data-name="Grupo 87" xmlns="http://www.w3.org/2000/svg" width="19.369" height="19.421" viewBox="0 0 19.369 19.421">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #888;
+        stroke-linecap: round;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Elipse_1" data-name="Elipse 1" class="cls-1">
+    <ellipse class="cls-2" cx="7.925" cy="7.354" rx="7.925" ry="7.354"/>
+    <ellipse class="cls-3" cx="7.925" cy="7.354" rx="6.925" ry="6.354"/>
+  </g>
+  <path id="Caminho_4" data-name="Caminho 4" class="cls-1" d="M1169.566,31.2l5.017,5.946" transform="translate(-1156.622 -19.138)"/>
+</svg>

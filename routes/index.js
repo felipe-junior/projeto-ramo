@@ -2,9 +2,10 @@
 
 const rotas = require('express').Router()
 const home = require('./home')
+const pergunta = require('./pergunta')
 
 rotas.use("/", home)
 rotas.use("/cadastrar", require("./cadastrar"))
-rotas.use("/pergunta", require("./pergunta"))
+rotas.use("/pergunta", pergunta)
 
 module.exports = rotas
