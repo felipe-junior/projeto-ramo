@@ -1,7 +1,7 @@
 const Router = require("express").Router({})
 const Pergunta = require("../database/models/pergunta")
 
-Router.get("/pergunta", (req, res) =>{
+Router.get("/perguntar", (req, res) =>{
     res.render("perguntar")
 })
 

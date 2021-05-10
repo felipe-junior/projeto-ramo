@@ -1,12 +1,12 @@
 const Router = require("express").Router({})
 const loginTabela = require("../database/models/login")
 
-Router.get("/", (req, res)=>{
+Router.get("/cadastrar", (req, res)=>{
     res.render("formTeste")
 
 })
 
-Router.post("/", (req, res) =>{
+Router.post("/cadastrar", (req, res) =>{
     const [username, email, senha] = [req.body.username, req.body.email, req.body.senha]
     
     loginTabela.create({
