@@ -1,16 +1,25 @@
 const Router = require("express").Router({})
 const Pergunta = require("../database/models/pergunta")
+const Categoria = require("../database/models/categoria")
+const slugify = require("slugify")
 
+//Rotas Get
 Router.get("/perguntar", (req, res) =>{
-    res.render("perguntar")
+    Categoria.findAll().then(categorias =>{
+        res.render("perguntar", {categorias: categorias})
+    })
 })
 
+//Rotas Post
 Router.post("/salvarpergunta", (req, res) =>{
-    var t = req.body.title;
-    var d = req.body.desc;
+    let t = req.body.title;
+    let d = req.body.description;
+    let c = req.body.category;
     Pergunta.create({
         titulo: t,
-        desc: d
+        desc: d,
+        slug: slugify(t),
+        categoriumId: c
     }).then(() =>{
         res.redirect("/")
     })

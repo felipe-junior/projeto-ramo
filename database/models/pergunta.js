@@ -1,5 +1,6 @@
 const loginConnection = require("../databaseConfig")
 const sq = require("sequelize")
+const categoria = require("./categoria");
 
 const pergunta = loginConnection.define('pergunta', {
     titulo:{
@@ -9,8 +10,14 @@ const pergunta = loginConnection.define('pergunta', {
     desc:{
         type: sq.TEXT,
         allowNull: false
+    },
+    slug:{
+        type: sq.TEXT,
+        allowNull: false
     }
 });
 
+pergunta.belongsTo(categoria);
+categoria.hasMany(pergunta);
 pergunta.sync({force: false});
 module.exports = pergunta;

@@ -18,8 +18,10 @@
             <h1>Crie uma categoria</h1> <!--Troquei para H1, pois influencia na pesquisa dos sites no google, portanto é uma boa prática-->
 
             <label>Nome da categoria</label>
-            <input type="text" placeholder="Digite o nome da categoria">
+            <form method="POST" action="/salvarcategoria">
+            <input type="text" placeholder="Digite o nome da categoria" class="form-control" name="title">
             <button type="submit">Criar categoria</button>
+            </form>
         </section>
     </main>
 

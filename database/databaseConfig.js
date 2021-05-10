@@ -6,6 +6,7 @@ const config = new Sequelize({
     password: "290520",
     database: "projetoramo",
     dialect: "mysql",
+    timezone: "-03:00",
     query: {raw: true}
 })
 module.exports = config
