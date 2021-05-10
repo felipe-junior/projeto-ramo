@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolforum - Nova categoria</title>
+
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/nova-categoria.css">
+</head>
+
+<body>
+    <%-include("partials/header.ejs") %>
+    
+    <main class="container">
+        <section id="create-category">
+            <h1>Crie uma categoria</h1> <!--Troquei para H1, pois influencia na pesquisa dos sites no google, portanto é uma boa prática-->
+
+            <label>Nome da categoria</label>
+            <input type="text" placeholder="Digite o nome da categoria">
+            <button type="submit">Criar categoria</button>
+        </section>
+    </main>
+
+    <%-include("partials/footer.ejs") %>
+</body>
+</html>

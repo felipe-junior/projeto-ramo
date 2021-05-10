@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolforum - Entrar</title>
+
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/entrar.css">
+</head>
+
+<body>
+    <%-include("partials/header.ejs") %>
+    
+    <main class="container">
+        <section id="login">
+            <h1>Entrar</h1> <!--Troquei para H1, pois influencia na pesquisa dos sites no google, portanto é uma boa prática-->
+            
+            <form method="POST" action="/validarconta">
+                <input type="email" placeholder="Digite o seu email"><br>
+                <input type="password" placeholder="Digite a sua senha"><br>
+                <button type="submit" id="login-button">Entrar</button>
+            </form>
+            
+            <span>ou</span><br>
+            <a href="/cadastrar"><button id="signup-button">Cadastrar-se</button></a>
+
+            <span><a href="">Esqueceu sua senha ?</a></span>
+
+        </section>
+    </main>
+
+    <%-include("partials/footer.ejs") %>
+</body>
+</html>

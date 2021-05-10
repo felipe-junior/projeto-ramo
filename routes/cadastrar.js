@@ -2,7 +2,7 @@ const Router = require("express").Router({})
 const loginTabela = require("../database/models/login")
 
 Router.get("/cadastrar", (req, res)=>{
-    res.render("formTeste")
+    res.render("cadastrar")
 
 })
 

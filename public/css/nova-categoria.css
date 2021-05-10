@@ -1,0 +1,38 @@
+/*---------- Create category  ----------*/
+#create-category{
+    margin-top: 40px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: #cacaca 0 3px 3px 0;
+}
+#create-category h1{
+    margin-bottom: 25px;
+}
+#create-category label{
+    color: #707070;
+    display: block;
+    margin-bottom: 10px;
+}
+#create-category input[type=text]{
+    border: 1px solid #707070;
+    display: block;
+    width: 100%;
+    height: 45px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-indent: 15px;
+}
+#create-category button{
+    border: none;
+    color: white;
+    font-weight: bold;
+    background-color: #24BFA3;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 10px; 
+    transition: all 0.3s;
+}
+#create-category button:hover{
+    background-color: #339E7E;
+}
