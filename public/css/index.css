@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font: 16px "Helvetica", arial, Sans-serif;
+    background-color: #e9e9e9;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+    padding-left: 0;
+}
+input, button{
+    outline: none;
+}
+button{
+    cursor: pointer;
+}
+/*---------- Container ----------*/
+.container{ /*border: 2px solid black;*/
+    max-width: 1100px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+/*---------- Header ----------*/
+header{
+    width: 100%;
+    height: 80px;
+    background-color: #F2F2F2;
+    box-shadow: #686868 0 0 5px 0;
+}
+#navbar{
+    height: 100%; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#navbar a#brand{
+    color: #096d5a;
+    font-size: 30px;
+}
+#navbar ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#navbar ul li{
+    margin-left: 20px;
+}
+#navbar ul a{
+    color: #1F8C8C;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+#navbar ul a:hover{
+    color: #24BFA3;
+}
+/*---------- Search ----------*/
+.search{
+    border: 1.5px solid #707070;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+.search input{
+    font-size: 16px;
+    border-radius: 10px 0 0 10px;
+    height: 40px;
+    border: none;
+    text-indent: 15px;
+}
+.search button{
+    border-radius: 0 10px 10px 0 ;
+    background-color: white;
+    border: none;
+    padding: 8px 8px 6px 8px;
+}
+
+/*---------- Main ----------*/
+main{
+    min-height: 70vh;
+}
+main h1{
+    color: #686868;
+    font-size: 30px;
+}
+
+/*---------- Footer ----------*/
+footer{ 
+    background-color: #595959;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+#footer{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#footer h2{
+    margin-bottom: 30px;
+}
+#footer ul{
+    display: flex;
+    justify-content: center;
+}
+#footer ul li{
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#footer ul a{
+    color: white;
+}
+#footer hr{
+    width: 100%;
+    margin: 15px 0;
+}
+#footer span{
+    font-size: 14px;
+}
