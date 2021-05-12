@@ -2,7 +2,7 @@
     <nav id="navbar" class="container">
         <a id="brand" href="/">Wolforum</a>
 
-        <ul>
+        <ul id="menu" class="menu">
             <li>
                 <form class="search" method="" action="">
                     <input type="search" placeholder="Pesquisar">
@@ -13,5 +13,13 @@
             <li><a href="/categorias">Categorias</a></li>
             <li><a href="/entrar">Entrar ou cadastrar-se</a></li>
         </ul>
+
+        <button id="menu-button" class="menu-button" onclick="menu()">
+            <div class="bars bar-1"></div>
+            <div class="bars bar-2"></div>
+            <div class="bars bar-3"></div>
+        </button>
     </nav>
+
+    <script src="../../js/menu.js"></script>
 </header>

@@ -29,6 +29,10 @@ button{
 
 /*---------- Header ----------*/
 header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     height: 80px;
     background-color: #F2F2F2;
@@ -44,21 +48,24 @@ header{
     color: #096d5a;
     font-size: 30px;
 }
-#navbar ul{
+.menu{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-#navbar ul li{
+.menu li{
     margin-left: 20px;
 }
-#navbar ul a{
+.menu a{
     color: #1F8C8C;
     font-weight: bold;
     transition: all 0.3s;
 }
-#navbar ul a:hover{
+.menu a:hover{
     color: #24BFA3;
+}
+.menu-button{
+    display: none;
 }
 /*---------- Search ----------*/
 .search{
@@ -70,6 +77,7 @@ header{
 .search input{
     font-size: 16px;
     border-radius: 10px 0 0 10px;
+    width: 300px;
     height: 40px;
     border: none;
     text-indent: 15px;
@@ -122,5 +130,86 @@ footer{
     margin: 15px 0;
 }
 #footer span{
+    text-align: center;
     font-size: 14px;
+}
+
+@media (max-width:1024px) {
+    .search input{
+        width: 120px;
+    }
+}
+@media (max-width: 768px){
+
+    /*---------- Navbar ----------*/
+    .menu{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: #595959;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        padding-top: 80px;
+        padding-right: 20px;
+        transition: all .2s;
+    }
+    .menu li{
+        margin-bottom: 30px;
+    }
+    .menu a{
+        color: white;
+    }
+    .menu-active{
+        right: 0;
+        transition: all .2s;
+    }
+    .search input{
+        width: 100%;
+    }
+    .menu-button{ 
+        background-color: transparent;
+        border: none;
+        height: 25px;
+        width: 30px;
+        z-index: 1;
+        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.3s;
+    }
+    .menu-button .bars{
+        background-color: #096d5a;
+        border-radius: 2px;
+        width: 32px;
+        height: 2px;
+        transition: all .2s;
+    }
+    .bar-1{
+        transform-origin: left;
+    }
+    .bar-3{
+        transform-origin: left;
+    }
+    .menu-button-active .bars{
+        background-color: white;
+    }
+    .menu-button-active .bar-1{
+        transform: rotate(45deg);
+    }
+    .menu-button-active .bar-2{
+        display: none;
+    }
+    .menu-button-active .bar-3{
+        transform: rotate(-45deg);
+    }
+
+    /*---------- Footer ----------*/
+    #footer ul{
+        flex-wrap: wrap;
+    }
 }
