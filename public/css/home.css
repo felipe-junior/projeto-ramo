@@ -1,0 +1,75 @@
+#ask{
+    margin-top: 40px;
+    background-color: white;
+    padding: 00px;
+    border-radius: 10px;
+    box-shadow: #cacaca 0 3px 3px 0;
+}
+
+#top-bar{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F8F8F8;
+    padding: 0 20px;
+}
+
+#top-bar h1{
+    font-size: 24px;
+}
+#top-bar button{
+    height: 45px;
+    width: 160px;
+    background-color: #09AB9B;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+#asks{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+#asks span{
+    border-bottom: #DFDFDF solid 1px;
+
+}
+.content{
+    padding: 15px 20px 10px 20px;
+}
+.top-bar-content{
+    display: flex;
+    justify-content: space-between;
+}
+.bottom-bar-content{
+    padding-top: 15px;    
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    
+}
+.category{
+    color: #9E8400;
+    background-color: #F2D338;
+    min-width: 100px;
+    text-align: center;
+}
+.date, .category{
+    font-size: 18px;
+    line-height: 30px;
+}
+.more{
+    margin: 0 auto;
+    height: 80px;
+}
+.more a{
+    font-size: 50px;
+    /* line-height: 80px; */
+    color: #686868;
+}
+.container{
+    margin-bottom: 50px;
+}
