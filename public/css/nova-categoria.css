@@ -9,11 +9,6 @@
 #create-category h1{
     margin-bottom: 25px;
 }
-#create-category label{
-    color: #707070;
-    display: block;
-    margin-bottom: 10px;
-}
 #create-category input[type=text]{
     border: 1px solid #707070;
     display: block;
@@ -25,14 +20,22 @@
 }
 #create-category button{
     border: none;
+    border-radius: 5px;
+    padding: 10px;
     color: white;
-    font-weight: bold;
-    background-color: #24BFA3;
-    display: block;
-    padding: 10px 15px;
-    border-radius: 10px; 
-    transition: all 0.3s;
+    background-color: #09AB9B;
+    font-size: 16px;
 }
 #create-category button:hover{
     background-color: #339E7E;
+}
+@media(max-width:768px){
+    #create-category button{
+        font-size: 14px;
+    }
+}
+@media(max-width:414px){
+    #create-category button{
+        width: 100%;
+    }
 }
