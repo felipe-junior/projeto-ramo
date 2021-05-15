@@ -93,11 +93,6 @@ header{
 main{
     min-height: 75vh;
 }
-main h1{
-    color: #686868;
-    font-size: 30px;
-}
-
 /*---------- Footer ----------*/
 footer{ 
     background-color: #595959;
@@ -131,16 +126,18 @@ footer{
 }
 #footer span{
     text-align: center;
-    font-size: 14px;
 }
 
 @media (max-width:1024px) {
     .search input{
-        width: 120px;
+        width: 150px;
     }
 }
 @media (max-width: 768px){
 
+    body{
+        font-size: 14px;
+    }
     /*---------- Navbar ----------*/
     .menu{
         display: flex;
