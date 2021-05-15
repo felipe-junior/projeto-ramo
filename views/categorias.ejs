@@ -1,25 +1,62 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wolforum - Categorias</title>
-
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/categorias.css">
+    <title>Categorias</title>
+    <style>
+        
+    </style>
 </head>
-
 <body>
-    <%-include("partials/header.ejs") %>
-    
-    <main class="container">
-        <section >
-            <h2>Esta é a página de categorias</h2>
-            <a href="/categorias/novo"><button>Nova categoria</button> </a>
-        </section>
-    </main>
+    <!-- Para o back end, esta pagina necessitará de um array de categorias, esse array de categorias deve conter o atributo "nome" e "qtd", respectivamente, nome da categoria e quantidade de discussões 
+    -->
 
-    <%-include("partials/footer.ejs") %>
+
+    <%- include('partials/header.ejs')  -%> 
+    <main class="container">
+        <div class="card-category">
+        
+            <div class="card-header">
+       
+                <h1> Todas as categorias </h1>
+       
+                <nav>
+
+                    <form class="search" method="" action="">
+                    
+                        <input type="search" placeholder="Pesquisar">
+                    
+                        <button type="submit"><img src="/assets/search-button.svg" alt="Search button"></button>
+                    
+                    </form>
+                    
+                    <a href="">Criar</a>
+
+                </nav>
+       
+            </div>
+
+            <div class="card-body">
+               
+                <% categorias.slice(0, 10).forEach(element => { %>
+                <div class="category">             
+                    <div>
+                            <a href=""> <%= element.nome %> </a>
+                    </div> 
+                    
+                    <div class="discussions-number"><%= element.qtd %> discussões </div>
+                </div>
+                    <% }) %>
+                <div class="more"><a href="">. . .</a></div>
+            </div>
+    
+        </div>
+  
+    </main>
+    <%- include('partials/footer.ejs')  -%> 
 </body>
 </html>
