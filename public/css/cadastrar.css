@@ -44,3 +44,20 @@
 #signup #back-button{
     color: #088ca7;
 }
+
+@media(max-width:768px){
+    #signup{
+        height: 450px;
+    }
+    #signup input{
+        font-size: 14px;
+    }
+}
+@media(max-width:414px){
+    #signup input{
+        width: 100%;
+    }
+    #signup button{
+        width: 100%;
+    }
+}
