@@ -7,6 +7,7 @@ const cadastrar = require("./cadastrar")
 const categorias = require('./categorias')
 const entrar = require('./entrar')
 const discussao = require('./discussao')
+const pesquisarDiscussao = require('./pesquisar-discussao')
 
 rotas.use("/", home)
 rotas.use("/", cadastrar)
@@ -14,5 +15,6 @@ rotas.use("/", perguntar)
 rotas.use("/", categorias)
 rotas.use("/", entrar)
 rotas.use("/", discussao)
+rotas.use("/", pesquisarDiscussao)
 
 module.exports = rotas
