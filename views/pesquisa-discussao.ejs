@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolforum - Home</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+    <%-include("partials/header.ejs") %>
+    
+    <main class="container">
+        <section id="ask">
+            <div id="top-bar">
+                <h1>Pesquisa: "<%= title %>"</h1>
+                <a href="/perguntar"><button>Abrir pergunta</button></a>
+            </div>
+            <div id="asks">
+
+                <% discussions.forEach((discussion)=>{ %>
+                    <span>
+                        <div class="content">
+                            <div class="top-bar-content">
+                                <h3 class="title"><a href="/discussao/<%=discussion.id%>"><%= discussion.title %></a></h3>
+                                <div class="user">Perguntado por: <%= discussion.author %></div>
+                            </div>
+                            <div class="bottom-bar-content">
+                                <div class="category"><%= discussion.category %></div>
+                                <div class="date"><%= discussion.date %></div>
+                            </div>
+                        </div>
+                    </span>
+                <% }) %>
+                   
+                    <div class="more">
+                        <a href="">...</a>
+                    </div>
+                </div>
+        </section>
+    </main>
+
+    <%-include("partials/footer.ejs") %>
+</body>
+</html>
+
+
+

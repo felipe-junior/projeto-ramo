@@ -64,13 +64,10 @@
     margin-bottom: 20px;
 }
 #answare-form textarea{
-    width: 100%;
-    border-radius: 5px;
-    min-height: 150px;
     resize: none;
-    margin-bottom: 10px;
 }
-#answare-form button{
+#answare-form button.btn{
+    margin-top: 15px;
     border: none;
     border-radius: 5px;
     padding: 10px;
