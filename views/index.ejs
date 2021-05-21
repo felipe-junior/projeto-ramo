@@ -7,156 +7,59 @@
     <title>Wolforum - Home</title>
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/home2.css">
 </head>
 
 <body>
     <%-include("partials/header.ejs") %>
     
     <main class="container">
-        <section id="ask">
-            <div id="top-bar">
+        <div class="card">
+            <div class="card-header">
                 <h1>Todas as discussões</h1>
-                <a href="/perguntar"><button>Abrir pergunta</button></a>
-            </div>
-            <div id="asks">
-                    <span>
-                        <div class="content">
-                            <div class="top-bar-content">
-                                <h3 class="title"><a href="/discussao/1">Lorem ipsum dolor sit ?</a></h3>
-                                <div class="user">Perguntado por: felipe</div>
-                            </div>
-                            <div class="bottom-bar-content">
-                                <div class="category">Esporte</div>
-                                <div class="date">29/05/2021</div>
-                            </div>
-                        </div>
-                    </span>
-                    <span>
-                        <div class="content">
-                            <div class="top-bar-content">
-                                <h3 class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</h3>
-                                <div class="user">Perguntado por: felipe</div>
-                            </div>
-                            <div class="bottom-bar-content">
-                                <div class="category">Esporte</div>
-                                <div class="date">29/05/2021</div>
-                            </div>
-                        </div>
-                    </span>
-                    <span>
-                        <div class="content">
-                            <div class="top-bar-content">
-                                <h3 class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</h3>
-                                <div class="user">Perguntado por: felipe</div>
-                            </div>
-                            <div class="bottom-bar-content">
-                                <div class="category">Esporte</div>
-                                <div class="date">29/05/2021</div>
-                            </div>
-                        </div>
-                    </span>
-                    <span>
-                        <div class="content">
-                            <div class="top-bar-content">
-                                <h3 class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</h3>
-                                <div class="user">Perguntado por: felipe</div>
-                            </div>
-                            <div class="bottom-bar-content">
-                                <div class="category">Esporte</div>
-                                <div class="date">29/05/2021</div>
-                            </div>
-                        </div>
-                    </span>
-                    <span>
-                        <div class="content">
-                            <div class="top-bar-content">
-                                <h3 class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</h3>
-                                <div class="user">Perguntado por: felipe</div>
-                            </div>
-                            <div class="bottom-bar-content">
-                                <div class="category">Esporte</div>
-                                <div class="date">29/05/2021</div>
-                            </div>
-                        </div>
-                    </span>
-                    <span>
-                        <div class="content">
-                            <div class="top-bar-content">
-                                <h3 class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</h3>
-                                <div class="user">Perguntado por: felipe</div>
-                            </div>
-                            <div class="bottom-bar-content">
-                                <div class="category">Esporte</div>
-                                <div class="date">29/05/2021</div>
-                            </div>
-                        </div>
-                    </span>
-                    <span>
-                        <div class="content">
-                            <div class="top-bar-content">
-                                <h3 class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</h3>
-                                <div class="user">Perguntado por: felipe</div>
-                            </div>
-                            <div class="bottom-bar-content">
-                                <div class="category">Esporte</div>
-                                <div class="date">29/05/2021</div>
-                            </div>
-                        </div>
-                    </span>
-                    <span>
-                        <div class="content">
-                            <div class="top-bar-content">
-                                <h3 class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</h3>
-                                <div class="user">Perguntado por: felipe</div>
-                            </div>
-                            <div class="bottom-bar-content">
-                                <div class="category">Esporte</div>
-                                <div class="date">29/05/2021</div>
-                            </div>
-                        </div>
-                    </span>
-                    <span>
-                        <div class="content">
-                            <div class="top-bar-content">
-                                <h3 class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</h3>
-                                <div class="user">Perguntado por: felipe</div>
-                            </div>
-                            <div class="bottom-bar-content">
-                                <div class="category">Esporte</div>
-                                <div class="date">29/05/2021</div>
-                            </div>
-                        </div>
-                    </span>
-                    <span>
-                        <div class="content">
-                            <div class="top-bar-content">
-                                <h3 class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</h3>
-                                <div class="user">Perguntado por: felipe</div>
-                            </div>
-                            <div class="bottom-bar-content">
-                                <div class="category">Esporte</div>
-                                <div class="date">29/05/2021</div>
-                            </div>
-                        </div>
-                    </span>
-                    <span>
-                        <div class="content">
-                            <div class="top-bar-content">
-                                <h3 class="title">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</h3>
-                                <div class="user">Perguntado por: felipe</div>
-                            </div>
-                            <div class="bottom-bar-content">
-                                <div class="category">Esporte</div>
-                                <div class="date">29/05/2021</div>
-                            </div>
-                        </div>
-                    </span>
-                    <div class="more">
-                        <a href="">...</a>
-                    </div>
+                <div class="grid-item-btn">
+                    <a href="http://">Abrir pergunta</a>
+
                 </div>
-        </section>
+            </div>
+            <div class="card-body">
+                <div class="ask">
+                        <a class="title" href="/pergunta/id">Lorem dolor sit amet consectetur adipisicing elit?</a>              
+                        <div class="grid-item-category">
+                            <a href="/categoria" class="category">Categorias</a>
+                        </div>
+                        <div class="user">Perguntado por: Usuário</div>
+                  
+                        <div class="date">00/00/0000</div>                   
+                </div>
+                <div class="ask">
+                        <a class="title" href="/pergunta/id">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat modi a, voluptatem totam enim placeat amet! Repudiandae quibusdam sed, ab amet odio non temporibus totam unde quaerat quam consectetur vel.</a>              
+                        <div class="grid-item-category">
+                            <a href="/categoria" class="category">Categorias</a>
+                        </div>
+                        <div class="user">Perguntado por: Usuário</div>
+                  
+                        <div class="date">00/00/0000</div>                   
+                </div>
+                <div class="ask">
+                        <a class="title" href="/pergunta/id">Lorem dolor sit amet consectetur adipisicing elit?</a>              
+                        <div class="grid-item-category">
+                            <a href="/categoria" class="category">Categorias</a>
+                        </div>
+                        <div class="user">Perguntado por: Usuário</div>
+                  
+                        <div class="date">00/00/0000</div>                   
+                </div>
+            
+    
+                
+            </div>
+
+         
+            <div class="card-footer">
+                <a href="">Ver mais</a>
+            </div>
+        </div>            
     </main>
 
     <%-include("partials/footer.ejs") %>
