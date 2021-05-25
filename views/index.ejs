@@ -18,38 +18,24 @@
             <div class="card-header">
                 <h1>Todas as discussões</h1>
                 <div class="grid-item-btn">
-                    <a href="http://">Abrir pergunta</a>
+                    <a href="/perguntar">Abrir pergunta</a>
 
                 </div>
             </div>
             <div class="card-body">
-                <div class="ask">
-                        <a class="title" href="/pergunta/id">Lorem dolor sit amet consectetur adipisicing elit?</a>              
+                <% discussao.forEach(disc => { %>
+                    <div class="ask">
+                        <a class="title" href="/pergunta/id"><%= disc.titulo %> </a>              
                         <div class="grid-item-category">
-                            <a href="/categoria" class="category">Categorias</a>
+                            <a href="/categoria" class="category"><%= disc.categorium.titulo %></a>
                         </div>
                         <div class="user">Perguntado por: Usuário</div>
-                  
-                        <div class="date">00/00/0000</div>                   
-                </div>
-                <div class="ask">
-                        <a class="title" href="/pergunta/id">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat modi a, voluptatem totam enim placeat amet! Repudiandae quibusdam sed, ab amet odio non temporibus totam unde quaerat quam consectetur vel.</a>              
-                        <div class="grid-item-category">
-                            <a href="/categoria" class="category">Categorias</a>
-                        </div>
-                        <div class="user">Perguntado por: Usuário</div>
-                  
-                        <div class="date">00/00/0000</div>                   
-                </div>
-                <div class="ask">
-                        <a class="title" href="/pergunta/id">Lorem dolor sit amet consectetur adipisicing elit?</a>              
-                        <div class="grid-item-category">
-                            <a href="/categoria" class="category">Categorias</a>
-                        </div>
-                        <div class="user">Perguntado por: Usuário</div>
-                  
-                        <div class="date">Postado em: 00/00/0000</div>                   
-                </div>
+              
+                        <div class="date"><%= disc.createdAt %></div>       
+                              
+                    </div>
+                <% }) %>   
+                
             
     
                 

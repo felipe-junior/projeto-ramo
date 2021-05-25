@@ -1,4 +1,4 @@
-const rota_teste = require("express")
+const rota = require("express")
 const Categoria = require("./database/models/categoria")
 
 //Teste que eu tava fazendo para nós adicionarmos categorias "padrões", que já vão ter adicionadas sem precisar do usuário criar uma categoria
@@ -17,10 +17,8 @@ Categoria.count().then(c =>{
     })).then(Categoria.create({
         titulo: "Curiosidades",
         slug: "Curiosidades"
-    })) 
-    else
-      console.log("Mais que 0") //apenas um indicador de que já tem categorias criadas na tabela
+    }))
   })
 
 
-module.exports = rota_teste;
+module.exports = rota;

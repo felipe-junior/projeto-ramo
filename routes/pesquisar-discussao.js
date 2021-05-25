@@ -2,7 +2,9 @@ const Router = require("express").Router({})
 const Pergunta = require("../database/models/pergunta")
 const Categoria = require("../database/models/categoria")
 const slugify = require("slugify")
+const {Op} = require('sequelize')
 
+//Rota Post
 Router.post("/pesquisardiscussao", (req, res)=>{
     
     let slug = slugify(req.body.search)
@@ -10,31 +12,22 @@ Router.post("/pesquisardiscussao", (req, res)=>{
     res.redirect("/pesquisa/d/"+ slug)
 })
 
+//Rota Get
 Router.get("/pesquisa/d/:slug", (req,res)=>{
     
     let slug = req.params.slug
     let title = slug.split("-").join(" ")
-    
-    let discussion1 = {
-        id: "1",
-        title: "Python ou R para Data Science ?",
-        category: "Data Science",
-        author: "Felipe",
-        slug: "Python-ou-R-para-Data-Science-?",
-        date: "20/05/2021"
-    }
-    let discussion2 = {
-        id: "2",
-        title: "Python ou Javascript para back-end?",
-        category: "Web dev",
-        author: "Lucas",
-        slug: "Python-ou-Javascript-para-back-end?",
-        date: "10/05/2021"
-    }
-
-    let discussions = [discussion1, discussion2]
-
-    res.render("pesquisa-discussao", {title, discussions})
+    Pergunta.findAll({
+        include:[{model: Categoria}],
+        where: {
+            titulo: {
+                [Op.like]: '%'+title+'%'
+            }
+        }
+    }).then(pergunta =>{
+        res.render("pesquisa-discussao", {pergunta, title})
+    })
+   
 })
 
 module.exports = Router

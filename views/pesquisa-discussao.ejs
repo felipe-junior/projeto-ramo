@@ -21,16 +21,16 @@
             </div>
             <div id="asks">
 
-                <% discussions.forEach((discussion)=>{ %>
+                <% pergunta.forEach((discussion)=>{ %>
                     <span>
                         <div class="content">
                             <div class="top-bar-content">
-                                <h3 class="title"><a href="/discussao/<%=discussion.id%>"><%= discussion.title %></a></h3>
+                                <h3 class="title"><a href="/discussao/<%=discussion.id%>"><%= discussion.titulo %></a></h3>
                                 <div class="user">Perguntado por: <%= discussion.author %></div>
                             </div>
                             <div class="bottom-bar-content">
-                                <div class="category"><%= discussion.category %></div>
-                                <div class="date"><%= discussion.date %></div>
+                                <div class="category"><%= discussion.categorium.titulo %></div>
+                                <div class="date"><%= discussion.createdAt %></div>
                             </div>
                         </div>
                     </span>

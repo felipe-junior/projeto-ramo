@@ -1,20 +1,17 @@
 const Router = require("express").Router()
 const Categoria = require("../database/models/categoria")
+const Pergunta = require("../database/models/pergunta")
 const slugify = require("slugify")
 
 //Rotas Get
-Router.get("/categorias", (req, res)=>{
-    const arrayTemporario = [
-        {nome: "Esportes", qtd: 23},
-        {nome: "Noticias", qtd: 23},
-        {nome: "Saude", qtd: 23},
-        {nome: "Politica", qtd: 23},
-        {nome: "Mundo", qtd: 23},
-        {nome: "Variedades", qtd: 23},
-        {nome: "Lazer", qtd: 23},
-]
-    res.render("categorias", {categorias: arrayTemporario})
+Router.get("/categorias", (req, res) => {
+    Categoria.findAll().then(categorias => {
+        res.render("categorias", {categorias})
+    }).catch(err =>{
+        console.log(err)
+    })
 })
+
 Router.get("/categorias/novo", (req, res)=>{
 
     
@@ -24,13 +21,16 @@ Router.get("/categorias/novo", (req, res)=>{
 //Rotas Post
 Router.post("/salvarcategoria", (req, res)=>{
     let t = req.body.title;
-    if(t != undefined){
+    if(t != ""){
         Categoria.create({
             titulo: t,
             slug: slugify(t)
         }).then(() =>{
             res.redirect("/categorias");
         })
+    }
+    else{
+        res.redirect("/categorias/novo");
     }
 })
 
