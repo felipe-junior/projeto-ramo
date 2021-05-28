@@ -222,6 +222,7 @@ main{
     resize: none;
 }
 #categories select{
+    background-color: white;
     color: #555555;
     text-indent: 10px;
     font-size: 16px;
