@@ -4,7 +4,34 @@ const slugify = require("slugify")
 
 //Rotas Get
 Router.get("/categorias", (req, res)=>{
-    res.render("categorias")
+
+    let categoria1 = {
+        nome: "Esporte", 
+        qtd: 25
+    }
+    let categoria2 = {
+        nome: "Saúde", 
+        qtd: 22
+    }
+    let categoria3 = {
+        nome: "Educação", 
+        qtd: 20
+    }
+    let categoria4 = {
+        nome: "Esporte", 
+        qtd: 25
+    }
+    let categoria5 = {
+        nome: "Saúde", 
+        qtd: 22
+    }
+    let categoria6 = {
+        nome: "Educação", 
+        qtd: 20
+    }
+
+    let categorias = [categoria1, categoria2, categoria3, categoria4, categoria5, categoria6]
+    res.render("categorias", {categorias})
 })
 Router.get("/categorias/novo", (req, res)=>{
     res.render("nova-categoria")
