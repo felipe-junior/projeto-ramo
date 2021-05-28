@@ -409,6 +409,11 @@ main{
 #login span a{
     color: #088ca7;
 }
+
+.tinymce-menu-open{
+    visibility: hidden!important;
+    display: none;
+}
 /*---------- Footer ----------*/
 footer{ 
     background-color: #595959;
