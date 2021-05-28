@@ -32,8 +32,11 @@ Router.get("/categorias", (req, res)=>{
 
     let categorias = [categoria1, categoria2, categoria3, categoria4, categoria5, categoria6]
     res.render("categorias", {categorias})
+
 })
 Router.get("/categorias/novo", (req, res)=>{
+
+    
     res.render("nova-categoria")
 })
 
