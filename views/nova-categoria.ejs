@@ -7,19 +7,20 @@
     <title>Wolforum - Nova categoria</title>
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/nova-categoria.css">
+    <!--<link rel="stylesheet" href="/css/nova-categoria.css">-->
 </head>
 
 <body>
     <%-include("partials/header.ejs") %>
     
     <main class="container">
-        <section id="create-category">
+        <section class="main-content" id="new-category">
             <h1>Crie uma categoria</h1> <!--Troquei para H1, pois influencia na pesquisa dos sites no google, portanto é uma boa prática-->
 
             <form method="POST" action="/salvarcategoria">
-            <input type="text" placeholder="Digite o nome da categoria" class="form-control" name="title">
-            <button type="submit">Criar categoria</button>
+                <label>Nome da categoria</label>
+                <input type="text" placeholder="Digite o nome da categoria" class="form-control" name="title">
+                <button class="btn" type="submit">Criar categoria</button>
             </form>
         </section>
     </main>

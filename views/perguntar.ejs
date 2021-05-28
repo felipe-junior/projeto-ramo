@@ -7,24 +7,24 @@
     <title>Wolforum - Nova Pergunta</title>
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/perguntar.css">
+    <!--<link rel="stylesheet" href="/css/perguntar.css">-->
 </head>
 
 <body>
     <%-include("partials/header.ejs") %>
     
     <main class="container">
-        <section id="new-ask">
+        <section class="main-content" id="new-ask">
             <h1>Faça uma nova pergunta</h1> <!--Troquei para H1, pois influencia na pesquisa dos sites no google, portanto é uma boa prática-->
 
             <form action="/salvarpergunta" method="post">
                 <div id="title">
                     <label>Título da pergunta</label>
-                    <input type="text" name="title">
+                    <input placeholder="Digite o título" type="text" name="title">
                 </div>
                 <div id="description">
                     <label >Descrição</label>
-                    <textarea name="description" rows="10"></textarea>
+                    <textarea name="description" id="description_ask"></textarea>
                 </div>
                 
                 <div id="categories">
@@ -36,7 +36,9 @@
                     </select>
 
                 </div>
-                <button type="submit">Perguntar</button>
+
+                <button class="btn" type="submit">Perguntar</button>
+
             </form>
 
         </section>
@@ -45,3 +47,13 @@
     <%-include("partials/footer.ejs") %>
 </body>
 </html>
+<!--
+<script src="/tinymce/tinymce.min.js"></script>
+<script> //
+    tinymce.init({
+        language: 'pt_BR',
+        selector: "#description_ask",
+        plugins: ["advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons"]
+    })
+</script>
+-->

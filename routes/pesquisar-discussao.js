@@ -5,9 +5,15 @@ const slugify = require("slugify")
 
 Router.post("/pesquisardiscussao", (req, res)=>{
     
-    let slug = slugify(req.body.search)
+    if(req.body.search === ''){
+        res.redirect("/")
+    }
+    else{
+        let slug = slugify(req.body.search)
 
-    res.redirect("/pesquisa/d/"+ slug)
+        res.redirect("/pesquisa/d/"+ slug)
+    }
+    
 })
 
 Router.get("/pesquisa/d/:slug", (req,res)=>{
