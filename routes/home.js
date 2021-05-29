@@ -5,10 +5,28 @@ const categoria = require('../database/models/categoria')
 
  function criar(){
   for (let i = 1; i < 1000; i++) 
-  Pergunta.create({titulo: String(i),desc:String(i) , slug: String(i)})      
+  Pergunta.create({titulo: String(i),desc:String(i) , slug: String(i), categoria})      
  }
 //criar()
-rota.get("/:id?", async (req, res)=>{
+rota.get("/", async (req, res)=>{
+  const limit = 20
+  const offset = 0
+   Pergunta.findAndCountAll({offset: offset, limit:limit}).then(discussions =>{
+    let next
+    if(offset + limit >= discussions.count){
+      next= false
+    } else{
+      next= true
+    }
+    
+    const result = {
+      next: next,
+      page: 1
+    }
+    res.render("index", {discussions: discussions.rows, result})
+  })
+})
+rota.get("/page/:id", async (req, res)=>{
   let id = req.params.id
   if(id==undefined || id<=0){// Caso o usuario nao passe o parametro id
     id=1

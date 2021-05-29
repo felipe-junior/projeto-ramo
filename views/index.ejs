@@ -33,13 +33,13 @@
                    
                     <div class="pagination">
                         <% if(result.page > 2) {%>
-                                <a href="/<%= result.page - 1 %>"> << anterior</a>
+                                <a href="/page/<%= result.page - 1 %>"> << anterior</a>
                         <%  }else if(result.page === 2){ %>
                                 <a href="/"> << anterior</a>
                         <%  } %>
                     
                         <% if(result.next === true) {%>
-                            <a href="/<%= result.page + 1 %>">próximo >></a>
+                            <a href="/page/<%= result.page + 1 %>">próximo >></a>
                         <% }%>
                     </div>
                 </div>
