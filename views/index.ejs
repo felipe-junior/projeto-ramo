@@ -23,23 +23,23 @@
             <div class="card-body">
                 <% discussions.forEach((discussion)=>{ %>
                     <div class="ask">
-                        <h3><a class="grid-ask-title" href="/discussao/<%=discussion.id%>"><%= discussion.title %></a></h3>
-                        <div class="grid-ask-user">Perguntado por: <%= discussion.author %></div>
+                        <h3><a class="grid-ask-title" href="/discussao/<%=discussion.id%>"><%= discussion.titulo %></a></h3>
+                        <div class="grid-ask-user">Perguntado por: FaltaTerNoModel</div>
 
                         <div class="grid-ask-category"><a class="btn btn-category" href=""><%= discussion.category %></a></div>
-                        <div class="grid-ask-date"><%= discussion.date %></div>
+                        <div class="grid-ask-date"><%= discussion.createdAt %></div>
                     </div>
                 <% }) %>
                    
                     <div class="pagination">
                         <% if(result.page > 2) {%>
-                                <a href="/<% result.page - 1 %>"> << anterior</a>
-                        <%  }else if(result.page == 2){ %>
+                                <a href="/<%= result.page - 1 %>"> << anterior</a>
+                        <%  }else if(result.page === 2){ %>
                                 <a href="/"> << anterior</a>
                         <%  } %>
                     
                         <% if(result.next === true) {%>
-                            <a href="/<% result.page + 1 %>">próximo >></a>
+                            <a href="/<%= result.page + 1 %>">próximo >></a>
                         <% }%>
                     </div>
                 </div>
