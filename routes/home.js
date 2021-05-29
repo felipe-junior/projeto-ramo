@@ -34,7 +34,6 @@ rota.get("/:id?", async (req, res)=>{
       next: next,
       page: parseInt(id)
     }
-    console.log(discussions)
     res.render("index", {discussions: discussions.rows, result})
   })
 
