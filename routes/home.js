@@ -85,7 +85,13 @@ rota.get("/", (req, res)=>{
   }  
 
   let discussions = [discussion1, discussion2, discussion3, discussion4, discussion5, discussion6, discussion7, discussion8, discussion9, discussion10]
-  res.render("index", {discussions})
+  
+  let result = {
+    page: 3,
+    next: true
+  }
+  
+  res.render("index", {discussions, result})
   teste() //função pra testar a adição de categorias iniciais, comentado mais sobre no arquivo importado
 })
 
