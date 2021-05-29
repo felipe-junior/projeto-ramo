@@ -22,9 +22,9 @@ rota.get("/:id?", async (req, res)=>{
   const offset = id * limit -limit
   
   
-  Pergunta.findAndCountAll({offset: offset, limit:limit}).then(perguntas =>{
+  Pergunta.findAndCountAll({offset: offset, limit:limit}).then(discussions =>{
     let next
-    if(offset + limit >= perguntas.count){
+    if(offset + limit >= discussions.count){
       next= false
     } else{
       next= true
@@ -34,8 +34,8 @@ rota.get("/:id?", async (req, res)=>{
       next: next,
       page: parseInt(id)
     }
-    console.log(perguntas)
-    res.render("index", {perguntas: perguntas.rows, result})
+    console.log(discussions)
+    res.render("index", {discussions: discussions.rows, result})
   })
 
   teste() //função pra testar a adição de categorias iniciais, comentado mais sobre no arquivo importado
