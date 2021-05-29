@@ -4,13 +4,18 @@
     box-sizing: border-box;
 }
 body{
-    font: 16px "Helvetica", arial, Sans-serif;
+    font: normal 16px "Helvetica", arial, Sans-serif;
+    color: #555555;
     background-color: #e9e9e9;
 }
 h1,h2,h3,h4,h5,h6{
     font-weight: 400;
 }
+h1{
+    font-size: 22px;
+}
 a{
+    color: #555555;
     text-decoration: none;
 }
 ul{
@@ -20,14 +25,25 @@ ul{
 input, button{
     outline: none;
 }
-button{
+.btn{
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    background-color: #09AB9B;
+    font-size: 16px;
+    text-align: center;
     cursor: pointer;
 }
+.btn:hover{
+    background-color: #088b7e;
+}
+
 /*---------- Container ----------*/
 .container{ /*border: 2px solid black;*/
     max-width: 1100px;
-    padding: 0 20px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 /*---------- Header ----------*/
@@ -93,17 +109,326 @@ header{
     background-color: white;
     border: none;
     padding: 8px 8px 6px 8px;
+    cursor: pointer;
 }
 
 /*---------- Main ----------*/
 main{
     min-height: 75vh;
 }
+/*---------- Home, Search and Categories content ----------*/
+.main-content#home, .main-content#search, .main-content#categories,
+ .main-content#new-ask, .main-content#new-category{
+    margin-top: 40px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+}
+.card-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    background-color: #F8F8F8;
+}
+/*---------- Asks content ----------*/
+.ask{
+    display: grid;
+    grid-template-columns: 70% 28%;
+    grid-template-rows: auto auto;
+    row-gap: 15px;
+    column-gap: 2%;
+    grid-template-areas: "linha1fr3 linha1fr1" "linha2fr3 linha2fr1";
+    padding: 20px;
+    border-bottom: solid 1px #DFDFDF;
+    align-items: center;
+}
+.grid-ask-title{
+    grid-area: linha1fr3;
+    font-size: 18px;
+}
+.grid-ask-category{
+    grid-area: linha2fr3;
+}
+.grid-ask-user{
+    justify-self: end;
+    grid-area: linha1fr1;
+}
+.grid-ask-date{
+    justify-self: end;
+    grid-area: linha2fr1;
+}
+.btn-category{
+    color: #085e69;
+    padding: 8px;
+    background-color: #37CADE;
+    font-size: 14px;
+    border-radius: 3px;
+}
+.btn-category:hover{
+    background-color: #37becf;
+}
+.pagination{
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.pagination a{
+    color: #096d5a;
+    border: 1px solid #096d5a;
+    border-radius: 5px;
+    margin: 5px 10px;
+    padding: 10px;
+}
+/*---------- All categories content ----------*/
+.category{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: auto auto;
+    grid-template-areas: "category-title category-number";
+    padding: 20px;
+    border-bottom: solid 1px #DFDFDF;
+}
+.grid-category-title{
+    grid-area: category-title;
+    align-self: center;
+}
+.discussions-number{
+    grid-area: category-number;
+    justify-self: end;
+}
+/*---------- New ask content ----------*/
+#new-ask{
+    padding: 20px;
+}
+#new-ask form input, #new-ask form label{
+    display: block;
+}
+#title input, #description textarea{
+    border-radius: 10px;
+    width: 100%;
+    border: solid #707070 1px; /* ****/
+}
+#title input:focus, #description textarea:focus, #new-ask select:focus{
+   outline: none;
+}
+#new-ask input{
+    font-size: 16px;
+    text-indent: 15px;
+    height: 45px;
+}
+#new-ask label{
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+#description textarea{
+    height: 250px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    resize: none;
+}
+#categories select{
+    background-color: white;
+    color: #555555;
+    text-indent: 10px;
+    font-size: 16px;
+    text-align: center;
+    width: 180px;
+    height: 45px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/*---------- New ask content ----------*/
+#ask-header{
+    background-color: white;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-top: 40px;
+}
+
+#ask-header span{
+    font-size: 14px;
+}
+#ask-body, .answares{
+    background-color: white;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+}
+/*--- author ---*/
+.comentary-author{ 
+    border-right: 1px solid #707070;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.author-img{
+    background-color: grey;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+.author-username{
+    margin-top: 10px;
+    text-align: center;
+}
+.author-date{
+    display: none;
+}
+/*--- text ---*/
+.comentary-text{
+    width: 100%;
+    margin-left: 10px;
+}
+.comentary-text p{
+    margin-top: 10px;
+    text-align: justify;
+}
+/*--- Answare form ---*/
+#answare-form{
+    background-color: white;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-top: 40px;
+}
+#answare-form h2{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+#answare-form textarea{
+    display: block;
+    width: 100%;
+    resize: none;
+    height: 300px;
+}
+#answare-form button.btn{
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    background-color: #09AB9B;
+    font-size: 16px;
+}
+/*---------- new category  ----------*/
+#new-category{
+    padding: 20px;
+}
+#new-category label{
+    display: block;
+    margin-top: 20px;
+}
+#new-category input{
+    margin-top: 10px;
+}
+#new-category input[type=text]{
+    border: 1px solid #707070;
+    display: block;
+    width: 100%;
+    height: 45px;
+    font-size: 16px;
+    border-radius: 10px;
+    text-indent: 15px;
+    margin-bottom: 15px;
+}
+/*---------- Login and Sign up  ----------*/
+#login, #signup{
+    margin-top: 40px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: #cacaca 0 3px 3px 0;
+    text-align: center;
+    max-width: 400px;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#login h1, #signup h1{
+    font-size: 22px;
+    margin: 20px 0 40px 0;
+}
+#login input, #signup input{
+    border: 1px solid #9e9e9e;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    width: 90%;
+    height: 40px;
+    border-radius: 50px;
+    margin-bottom: 15px;
+    text-indent: 15px;
+}
+#login button, #signup button{
+    font-size: 16px;
+    font-weight: bold;
+    width: 90%;
+    height: 40px;
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+#signup button{
+    margin: 20px 0;
+    border: none;
+    color: white;
+    background-color: #1F8C8C;
+    cursor: pointer;
+}
+#signup button:hover{
+    background-color: #2db9b9;
+}
+#signup #back-button{
+    color: #088ca7;
+}
+/*---------- Login  ----------*/
+#login input[type=password]{
+    margin-bottom: 30px;
+}
+
+#login #login-button{
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: #1F8C8C;
+}
+#login #login-button:hover{
+    background-color: #2db9b9;
+}
+#login #signup-button{
+    cursor: pointer;
+    border: 2px solid #24BFA3;
+    background-color: white;
+    color: #24BFA3;
+}
+#login #signup-button:hover{
+    color: white;
+    background-color: #24BFA3;
+}
+#login span{
+    display: block;
+    margin-top: 20px;
+}
+#login span a{
+    color: #088ca7;
+}
+
+.tinymce-menu-open{
+    visibility: hidden!important;
+    display: none;
+}
 /*---------- Footer ----------*/
 footer{ 
     background-color: #595959;
     padding: 20px 0;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 #footer{
     color: white;
@@ -147,6 +472,11 @@ footer{
 
     header{
         height: 60px;
+        padding: 0 20px;
+    }
+    /*---------- Container ----------*/
+    .container{
+        padding: 0;
     }
     /*---------- Navbar ----------*/
     .menu{
@@ -154,7 +484,7 @@ footer{
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        background-color: #595959;
+        background-color: #096d5a;
         height: 100%;
         position: fixed;
         top: 0;
@@ -215,9 +545,172 @@ footer{
     .menu-button-active .bar-3{
         transform: rotate(-45deg);
     }
+    /*---------- Home, Search and Categories content ----------*/
+    .main-content#home, .main-content#search, .main-content#categories,
+     .main-content#new-ask, .main-content#new-category{
+        margin-top: 0;
+        border-radius: 0;
+    }
+    .card-header{
+        flex-direction: column;
+        justify-content: center;
+        background-color: #e9e9e9;
+    }
+    .card-header h1{
+        margin: 15px;
+    }
+    
+    /*---------- Ask content ----------*/
+    .ask{ 
+        display: grid;
+        grid-template-columns: 100%;
+        row-gap: 10px;
+        grid-template-areas: "linha1ask" "linha2ask" "linha3ask" "linha4ask";
+    }
+    .grid-ask-title{
+        grid-area: linha1ask;
+    }
+    .grid-ask-user{
+        justify-self: start;
+        grid-area: linha2ask;
+    }
+    .grid-ask-date{
+        justify-self: start;
+        grid-area: linha3ask;
+    }
+    .grid-ask-category{
+        grid-area: linha4ask;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .btn-category{
+        color: #085e69;
+        padding: 8px;
+        background-color: #37CADE;
+        font-size: 14px;
+        border-radius: 3px;
+    }
+    /*---------- All categories content ----------*/
+    .category{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: "category-title category-number";
+    }
+    .grid-category-title{
+        grid-area: category-title;
+        justify-self: start;
+    }
+    .discussions-number{
+        grid-area: category-number;
+        justify-self: start;
+    }
+    /*---------- Discussion page ----------- */
+    #ask-body, .answares{
+        flex-direction: column;
+    }
+    
+    #ask-header span{
+        font-size: 12px;
+    }
+    /*------- comentary -------*/
 
+    /*------- author -------*/
+    .comentary-author{ 
+        margin-bottom: 10px;
+        border-right: none;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .author-img{
+        width: 30px;
+        height: 30px;
+    }
+    .author-username{
+        margin-top: none;
+        text-align: left;
+    }
+    .author-username,.author-date{
+        display: inline;
+        margin-left: 10px;
+    }
+    /*------- text -------*/
+    .comentary-text{
+        margin-left: 0;
+    }
+    .comentary-text span{
+        display: none;
+    }
+    .comentary-text p{
+        margin-top: 10px;
+    }
+    #answare-form h2{
+        font-size: 18px;
+    }
+    /*---------- New category ----------*/
+    #new-category{
+        height: 80vh;
+        padding-top: 40px;
+    }
+    #new-category button{
+        font-size: 14px;
+    }
+    /*---------- Login and Sign up  ----------*/
+    
     /*---------- Footer ----------*/
+    footer{
+        margin-top: 0;
+    }
     #footer ul{
         flex-wrap: wrap;
+    }
+}
+@media(max-width:420px){
+    h1{
+        font-size: 18px;
+    }
+    label, a, input{
+        font-size: 14px;
+    }
+    .btn{
+        width: 100%;
+    }
+    /*------ Home, search, and categories content */
+    .grid-ask-title{
+        font-size: 16px;
+    }
+
+    /*------ New ask content */
+    #categories select{
+        font-size: 14px;
+        width: 120px;
+    }
+    #new-ask label{
+        font-size: 14px;
+    }
+    #new-ask input{
+        font-size: 14px;
+    }
+    /*---------- New category ----------*/
+    #new-category input[type=text]{
+        font-size: 14px;
+    }
+    #new-category button{
+        width: 100%;
+    }
+    /*---------- Login and Sign up  ----------*/
+    #login, #signup{
+        width: 100%;
+        height: 600px;
+        margin-top: 0;
+        border-radius: 0;
+    }
+    #login input, #signup input{
+        font-size: 14px;
+        width: 100%;
+    }
+    #login button, #signup button{
+        width: 100%;
     }
 }

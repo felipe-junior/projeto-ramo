@@ -5,52 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/categorias.css">
+     <!--<link rel="stylesheet" href="/css/categorias.css">-->
     <title>Categorias</title>
-    <style>
-        
-    </style>
+    
 </head>
 <body>
     <!-- Para o back end, esta pagina necessitará de um array de categorias, esse array de categorias deve conter o atributo "nome" e "qtd", respectivamente, nome da categoria e quantidade de discussões 
     -->
+    <%-include("partials/header.ejs") %>
 
-
-    <%- include('partials/header.ejs')  -%> 
     <main class="container">
-        <div class="card-category">
-        
+        <section class="main-content" id="home">
             <div class="card-header">
-                <div class="card-grid">
-
-                    <h1> Todas as categorias </h1>
-                    
-                    <nav>
-                        
-                        <a href="">Criar</a>
-                        
-                    </nav>
-                </div>
-       
+                <h1>Todas as categorias</h1>
+                <a class="btn" href="/categorias/novo">Criar categoria</a>
             </div>
 
             <div class="card-body">
-               
                 <% categorias.slice(0, 10).forEach(element => { %>
-                <div class="category">             
-                    <div>
-                            <a href=""> <%= element.nome %> </a>
-                    </div> 
-                    
-                    <div class="discussions-number"><%= element.qtd %> discussões </div>
+                    <div class="category">     
+                        <h3><a class="grid-category-title" href="/categoria/<%=element.nome%>"><%= element.nome %></a></h3>        
+                        
+                        <div class="discussions-number"><%= element.qtd %> discussões </div>
+                    </div>
+                <% }) %>
+                   
+                <div class="see-more">
+                    <a href="">Ver mais</a>
                 </div>
-                    <% }) %>
-                <div class="more"><a href="">. . .</a></div>
-            </div>
-    
-        </div>
-  
+                
+        </section>
     </main>
+
     <%- include('partials/footer.ejs')  -%> 
 </body>
 </html>

@@ -65,6 +65,7 @@
 }
 #answare-form textarea{
     resize: none;
+    height: 300px;
 }
 #answare-form button.btn{
     margin-top: 15px;

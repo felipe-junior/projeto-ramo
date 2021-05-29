@@ -5,9 +5,15 @@ const slugify = require("slugify")
 
 Router.post("/pesquisardiscussao", (req, res)=>{
     
-    let slug = slugify(req.body.search)
+    if(req.body.search === ''){
+        res.redirect("/")
+    }
+    else{
+        let slug = slugify(req.body.search)
 
-    res.redirect("/pesquisa/d/"+ slug)
+        res.redirect("/pesquisa/d/"+ slug)
+    }
+    
 })
 
 Router.get("/pesquisa/d/:slug", (req,res)=>{
@@ -34,7 +40,11 @@ Router.get("/pesquisa/d/:slug", (req,res)=>{
 
     let discussions = [discussion1, discussion2]
 
-    res.render("pesquisa-discussao", {title, discussions})
+    let result = {
+        page: 3,
+        next: true
+    }
+    res.render("pesquisa-discussao", {title, discussions, result})
 })
 
 module.exports = Router
