@@ -7,45 +7,45 @@
     <title>Wolforum - Home</title>
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/home.css">
+    <!--<link rel="stylesheet" href="/css/home.css">-->
 </head>
 
 <body>
     <%-include("partials/header.ejs") %>
     
     <main class="container">
-        <section id="ask">
-            <div id="top-bar">
+        <section class="main-content" id="search">
+            <div class="card-header">
                 <h1>Pesquisa: "<%= title %>"</h1>
-                <a href="/perguntar"><button>Abrir pergunta</button></a>
+                <a class="btn" href="/perguntar">Abrir pergunta</a>
             </div>
-            <div id="asks">
 
-                <% pergunta.forEach((discussion)=>{ %>
-                    <span>
-                        <div class="content">
-                            <div class="top-bar-content">
-                                <h3 class="title"><a href="/discussao/<%=discussion.id%>"><%= discussion.titulo %></a></h3>
-                                <div class="user">Perguntado por: <%= discussion.author %></div>
-                            </div>
-                            <div class="bottom-bar-content">
-                                <div class="category"><%= discussion.categorium.titulo %></div>
-                                <div class="date"><%= discussion.createdAt %></div>
-                            </div>
-                        </div>
-                    </span>
+            <div class="card-body">
+                <% discussions.forEach((discussion)=>{ %>
+                    <div class="ask">
+                        <h3><a class="grid-ask-title" href="/discussao/<%=discussion.id%>"><%= discussion.titulo %></a></h3>
+                        <div class="grid-ask-user">Perguntado por: <%= discussion.author %></div>
+
+                        <div class="grid-ask-category"><a class="btn btn-category" href=""><%= discussion.categorium.titulo %></a></div>
+                        <div class="grid-ask-date"><%= discussion.createdAt %></div>
+                    </div>
                 <% }) %>
                    
-                    <div class="more">
-                        <a href="">...</a>
-                    </div>
+                <div class="pagination">
+                    <% if(result.page > 2) {%>
+                            <a href="/<% result.page - 1 %>"> << anterior</a>
+                    <%  }else if(result.page == 2){ %>
+                            <a href="/"> << anterior</a>
+                    <%  } %>
+                
+                    <% if(result.next === true) {%>
+                        <a href="/<% result.page + 1 %>">próximo >></a>
+                    <% }%>
                 </div>
+            </div>
         </section>
     </main>
 
     <%-include("partials/footer.ejs") %>
 </body>
 </html>
-
-
-

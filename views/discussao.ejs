@@ -7,7 +7,7 @@
     <title>Wolforum - Nova Pergunta</title>
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/discussao.css">
+    <!--<link rel="stylesheet" href="/css/discussao.css">-->
 </head>
 
 <body>
@@ -55,7 +55,10 @@
             <h2>Responder discussão</h2>
 
             <form method="GET" action="/discussao/<%= ask.id %>">
-                <textarea id="answer" name="text"></textarea>
+                <div id="answer-text">
+                    <label>Sua resposta</label>
+                    <textarea id="answer" name="text"></textarea>
+                </div>
                 <button class="btn">Responder</button>
             </form>
             
@@ -66,6 +69,7 @@
 </body>
 </html>
 
+<script src="/js/tinymce-menu-discussion.js"></script>
 <script src="/tinymce/tinymce.min.js"></script>
 <script> //
     tinymce.init({

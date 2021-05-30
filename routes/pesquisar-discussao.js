@@ -7,9 +7,15 @@ const {Op} = require('sequelize')
 //Rota Post
 Router.post("/pesquisardiscussao", (req, res)=>{
     
-    let slug = slugify(req.body.search)
+    if(req.body.search === ''){
+        res.redirect("/")
+    }
+    else{
+        let slug = slugify(req.body.search)
 
-    res.redirect("/pesquisa/d/"+ slug)
+        res.redirect("/pesquisa/d/"+ slug)
+    }
+    
 })
 
 //Rota Get

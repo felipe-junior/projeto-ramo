@@ -7,44 +7,45 @@
     <title>Wolforum - Home</title>
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/home.css">
+    <!-- <link rel="stylesheet" href="/css/home.css"> -->
 </head>
 
 <body>
     <%-include("partials/header.ejs") %>
     
     <main class="container">
-        <div class="card">
+        <section class="main-content" id="home">
             <div class="card-header">
                 <h1>Todas as discussões</h1>
-                <div class="grid-item-btn">
-                    <a href="/perguntar">Abrir pergunta</a>
-
-                </div>
+                <a class="btn" href="/perguntar">Abrir pergunta</a>
             </div>
+
             <div class="card-body">
-                <% discussao.forEach(disc => { %>
+                <% discussions.forEach((discussion)=>{ %>
                     <div class="ask">
-                        <a class="title" href="/pergunta/id"><%= disc.titulo %> </a>              
-                        <div class="grid-item-category">
-                            <a href="/categoria" class="category"><%= disc.categorium.titulo %></a>
-                        </div>
-                        <div class="user">Perguntado por: Usuário</div>
-              
-                        <div class="date"><%= disc.createdAt %></div>       
-                              
+                        <h3><a class="grid-ask-title" href="/discussao/<%=discussion.id%>"><%= discussion.titulo %></a></h3>
+                        <div class="grid-ask-user">Perguntado por: FaltaTerNoModel</div>
+
+                        <div class="grid-ask-category"><a class="btn btn-category" href=""><%= discussion.category %></a></div>
+                        <div class="grid-ask-date"><%= discussion.createdAt %></div>
                     </div>
-                <% }) %>   
-                
+                <% }) %>
+                   
+                    <div class="pagination">
+                        <% if(result.page > 2) {%>
+                                <a href="/page/<%= result.page - 1 %>"> << anterior</a>
+                        <%  }else if(result.page === 2){ %>
+                                <a href="/"> << anterior</a>
+                        <%  } %>
+                    
+                        <% if(result.next === true) {%>
+                            <a href="/page/<%= result.page + 1 %>">próximo >></a>
+                        <% }%>
+                    </div>
+                </div>
             
-    
-                
             </div>
 
-         
-            <div class="card-footer">
-                <a href="">Ver mais</a>
-            </div>
         </div>            
     </main>
 
