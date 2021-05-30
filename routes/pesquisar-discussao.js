@@ -20,7 +20,8 @@ Router.post("/pesquisardiscussao", (req, res)=>{
 
 //Rota Get
 Router.get("/pesquisa/d/:slug", (req,res)=>{
-    
+    const limit = 20
+    const offset = 0
     let slug = req.params.slug
     let title = slug.split("-").join(" ")
     Pergunta.findAll({
@@ -29,9 +30,22 @@ Router.get("/pesquisa/d/:slug", (req,res)=>{
             titulo: {
                 [Op.like]: '%'+title+'%'
             }
-        }
+        },
+        offset: offset, 
+        limit:limit
     }).then(pergunta =>{
-        res.render("pesquisa-discussao", {pergunta, title})
+        let next
+        if(offset + limit >= pergunta.count){
+            next= false
+          } else{
+            next= true
+          }
+          
+          const result = {
+            next: next,
+            page: 1
+          }
+        res.render("pesquisa-discussao", {pergunta, title, result})
     })
    
 })

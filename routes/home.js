@@ -20,7 +20,11 @@ const categorias_iniciais = require('../categorias_iniciais')
 rota.get("/", async (req, res)=>{
   const limit = 20
   const offset = 0
-   Pergunta.findAndCountAll({offset: offset, limit:limit}).then(discussions =>{
+   Pergunta.findAndCountAll({
+    include: [{model: Categoria}],
+    offset: offset, 
+    limit:limit
+  }).then(discussions =>{
     let next
     if(offset + limit >= discussions.count){
       next= false
@@ -35,6 +39,7 @@ rota.get("/", async (req, res)=>{
     res.render("index", {discussions: discussions.rows, result})
   })
 })
+
 rota.get("/page/:id", async (req, res)=>{
   let id = req.params.id
   if(id==undefined || id<=0){// Caso o usuario nao passe o parametro id
@@ -48,7 +53,11 @@ rota.get("/page/:id", async (req, res)=>{
   const offset = id * limit -limit
   
   
-  Pergunta.findAndCountAll({offset: offset, limit:limit}).then(discussions =>{
+  Pergunta.findAndCountAll({
+    include: [{model: Categoria}],
+    offset: offset, 
+    limit:limit
+    }).then(discussions =>{
     let next
     if(offset + limit >= discussions.count){
       next= false
