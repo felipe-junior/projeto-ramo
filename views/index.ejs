@@ -25,9 +25,9 @@
                     <div class="ask">
                         <h3><a class="grid-ask-title" href="/discussao/<%=discussion.id%>"><%= discussion.titulo %></a></h3>
                         <div class="grid-ask-user">Perguntado por: FaltaTerNoModel</div>
-
-                        <div class="grid-ask-category"><a class="btn btn-category" href=""><%= discussion.categorium.titulo %></a></div>
-                        <div class="grid-ask-date"><%= discussion.createdAt %></div>
+                        
+                        <div class="grid-ask-category"><a class="btn btn-category" href=""><%= discussion["categorium.titulo"] %></a></div>
+                        <div class="grid-ask-date"><%=result.data(discussion.createdAt) %></div>
                     </div>
                 <% }) %>
                    

@@ -15,7 +15,12 @@ const pergunta = loginConnection.define('pergunta', {
     slug:{
         type: sq.TEXT,
         allowNull: false
-    }
+    },
+    createdAt: {
+        type: sq.DATEONLY,
+        allowNull: false,
+      }
+
 });
 
 pergunta.belongsTo(categoria);
