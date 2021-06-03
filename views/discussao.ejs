@@ -53,10 +53,12 @@
         <section id="answare-form">
             <h2>Responder discussão</h2>
 
-            <form method="GET" action="/discussao/<%= ask.id %>">
+            <form method="POST" action="/salvaresposta">
                 <div id="answer-text">
                     <label>Sua resposta</label>
-                    <textarea id="answer" name="text"></textarea>
+                    <textarea id="answer" name="desc"></textarea>
+                    <input type="hidden" name="askId" value="<%= ask.id %>">
+                    <input type="hidden" name="askSlug" value="<%= ask.slug %>">
                 </div>
                 <button class="btn">Responder</button>
             </form>
