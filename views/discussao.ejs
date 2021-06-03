@@ -53,12 +53,10 @@
         <section id="answare-form">
             <h2>Responder discussão</h2>
 
-            <form method="POST" action="/salvaresposta">
+            <form method="GET" action="/discussao/<%= ask.id %>">
                 <div id="answer-text">
                     <label>Sua resposta</label>
-                    <textarea id="answer" name="desc"></textarea>
-                    <input type="hidden" name="askId" value="<%= ask.id %>">
-                    <input type="hidden" name="askSlug" value="<%= ask.slug %>">
+                    <textarea id="answer" name="text"></textarea>
                 </div>
                 <button class="btn">Responder</button>
             </form>
@@ -69,7 +67,8 @@
     <%-include("partials/footer.ejs") %>
 </body>
 </html>
-<!--
+
+<script src="/js/tinymce-menu-discussion.js"></script>
 <script src="/tinymce/tinymce.min.js"></script>
 <script> //
     tinymce.init({
@@ -78,4 +77,3 @@
         plugins: ["advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons"]
     })
 </script>
--->

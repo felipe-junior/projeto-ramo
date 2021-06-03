@@ -1,13 +1,18 @@
 const {Sequelize} = require('sequelize')
+const fs = require('fs')
+
+const json = fs.readFileSync(__dirname + "/senha.json", {encoding: 'utf8'})
+const admin = JSON.parse(json)
+
+console.log(admin)
 
 const config = new Sequelize({
     host: "localhost",
     username: "root",
-    password: "290520",
-    //password: "123456", 290520
+    password: admin.senha,
+   
     database: "projetoramo",
     dialect: "mysql",
-    timezone: "-03:00",
-    query: {raw: true}
+    timezone: "-03:00"
 })
 module.exports = config

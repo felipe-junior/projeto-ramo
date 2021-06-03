@@ -3,16 +3,39 @@ const Categoria = require('../database/models/categoria')
 const Pergunta = require('../database/models/pergunta')
 const categorias_iniciais = require('../categorias_iniciais')
 
-
-
+/*rota.get("/", (req, res)=>{
+  Pergunta.findAll({
+    include: [{model: Categoria}]
+  }).then(discussao =>{
+    res.render("index", {discussao})
+  })
+  categorias_iniciais() //função pra testar a adição de categorias iniciais, comentado mais sobre no arquivo importado
+})
+*/
+  function formataData(data){
+    console.log(data)
+          const div = data.split("-")
+          const dia = div[2]
+          const mes = div[1]
+          const ano = div[0]
+          const result = dia+"/"+mes+"/"+ano
+         
+          return result
+  }
+ 
+ function criar(){
+  for (let i = 1; i < 1000; i++) 
+  Pergunta.create({titulo: String(i),desc:String(i) , slug: String(i), categoria})      
+ }
+//criar()
 rota.get("/", async (req, res)=>{
   const limit = 20
   const offset = 0
    Pergunta.findAndCountAll({
-    order:[['id', 'DESC']],
     include: [{model: Categoria}],
     offset: offset, 
-    limit:limit
+    limit:limit,
+     raw: true
   }).then(discussions =>{
     let next
     if(offset + limit >= discussions.count){
@@ -20,7 +43,6 @@ rota.get("/", async (req, res)=>{
     } else{
       next= true
     }
-    
     const result = {
       next: next,
       page: 1,
@@ -44,7 +66,6 @@ rota.get("/page/:id", async (req, res)=>{
   
   
   Pergunta.findAndCountAll({
-    order:[['id', 'DESC']],
     include: [{model: Categoria}],
     offset: offset, 
     limit:limit
@@ -66,9 +87,6 @@ rota.get("/page/:id", async (req, res)=>{
   categorias_iniciais() //função pra testar a adição de categorias iniciais, comentado mais sobre no arquivo importado
 
 })
-
-
-
 
 module.exports = rota
 
