@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wolforum - Nova Pergunta</title>
+    <title><%= ask.titulo %></title>
 
     <link rel="stylesheet" href="/css/main.css">
-    <!--<link rel="stylesheet" href="/css/discussao.css">-->
 </head>
 
 <body>
@@ -15,22 +14,22 @@
     
     <main class="container">
         <section id="ask-header">
-            <h1><%= ask.title %></h1>
-            <span>Postado por: <%= ask.author %>, no dia: <%= ask.date %></span>
+            <h1><%= ask.titulo %></h1>
+            <span>Postado por: Usuário<!--<%= ask.author %> -->, no dia: <%= result.data(ask.createdAt) %></span>
         </section>
 
         <section id="ask-body">
             <section class="comentary-author">
                 <div class="author-img"></div>
                 <div class="author-data">
-                    <div class="author-username"><%= ask.author %></div>
-                    <div class="author-date"><%= ask.date %></div>
+                    <div class="author-username"> Usuário <!--<%= ask.author %> --></div>
+                    <div class="author-date"><%= result.data(ask.createdAt) %></div>
                 </div>
             </section>
 
             <article class="comentary-text">
-                <span><%= ask.date %></span>
-                <p><%= ask.text %></p>
+                <span><%= result.data(ask.createdAt) %></span>
+                <p><%- ask.desc %></p>
             </article>
         </section>
 
@@ -39,14 +38,14 @@
                 <section class="comentary-author">
                     <div class="author-img"></div>
                     <div class="author-data">
-                        <div class="author-username"><%= answer.author %></div>
-                        <div class="author-date"><%= answer.date %></div>
+                        <div class="author-username">Usuário</div>
+                        <div class="author-date"><%= result.data(answer.createdAt) %></div>
                     </div>
                 </section>
     
                 <article class="comentary-text">
-                    <span><%= answer.date %></span>
-                    <p><%= answer.text %></p>
+                    <span><%= result.data(answer.createdAt) %></span>
+                    <p><%- answer.desc %></p>
                 </article>
             </section>
         <% })%>
@@ -54,8 +53,13 @@
         <section id="answare-form">
             <h2>Responder discussão</h2>
 
-            <form method="GET" action="/discussao/<%= ask.id %>">
-                <textarea id="answer" name="text"></textarea>
+            <form method="POST" action="/salvaresposta">
+                <div id="answer-text">
+                    <label>Sua resposta</label>
+                    <textarea id="answer" name="desc"></textarea>
+                    <input type="hidden" name="askId" value="<%= ask.id %>">
+                    <input type="hidden" name="askSlug" value="<%= ask.slug %>">
+                </div>
                 <button class="btn">Responder</button>
             </form>
             

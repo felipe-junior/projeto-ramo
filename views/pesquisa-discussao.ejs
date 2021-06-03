@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wolforum - Home</title>
+    <title>Wolforum - Pesquisa</title>
 
     <link rel="stylesheet" href="/css/main.css">
-    <!--<link rel="stylesheet" href="/css/home.css">-->
 </head>
 
 <body>
@@ -23,11 +22,11 @@
             <div class="card-body">
                 <% discussions.forEach((discussion)=>{ %>
                     <div class="ask">
-                        <h3><a class="grid-ask-title" href="/discussao/<%=discussion.id%>"><%= discussion.title %></a></h3>
+                        <h3><a class="grid-ask-title" href="/discussao/<%=discussion.slug%>"><%= discussion.titulo %></a></h3>
                         <div class="grid-ask-user">Perguntado por: <%= discussion.author %></div>
 
-                        <div class="grid-ask-category"><a class="btn btn-category" href=""><%= discussion.category %></a></div>
-                        <div class="grid-ask-date"><%= discussion.date %></div>
+                        <div class="grid-ask-category"><a class="btn btn-category" href="/categoria/<% discussion.categorium.slug %>"><%= discussion.categorium.titulo %></a></div>
+                        <div class="grid-ask-date"><%= result.data(discussion.createdAt) %></div>
                     </div>
                 <% }) %>
                    

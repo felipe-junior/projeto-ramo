@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wolforum - Nova Pergunta</title>
+    <title>Nova Pergunta</title>
 
     <link rel="stylesheet" href="/css/main.css">
-    <!--<link rel="stylesheet" href="/css/perguntar.css">-->
 </head>
 
 <body>
@@ -20,7 +19,7 @@
             <form action="/salvarpergunta" method="post">
                 <div id="title">
                     <label>Título da pergunta</label>
-                    <input placeholder="Digite o título" type="text" name="title">
+                    <input placeholder="Digite o título" type="text" name="title" required>
                 </div>
                 <div id="description">
                     <label >Descrição</label>
@@ -29,7 +28,6 @@
                 
                 <div id="categories">
                     <select name="category">
-                        <option value="0" selected="selected">Categoria</option>
                         <% categorias.forEach(category => { %>
                             <option value="<%= category.id %>"><%= category.titulo%> </option> 
                         <% }); %> 
