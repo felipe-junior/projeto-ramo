@@ -27,7 +27,7 @@
                 </div>
                 
                 <div id="categories">
-                    <select name="category">
+                    <select name="category" required>
                         <% categorias.forEach(category => { %>
                             <option value="<%= category.id %>"><%= category.titulo%> </option> 
                         <% }); %> 
@@ -46,7 +46,6 @@
 </body>
 </html>
 
-<script src="/js/tinymce-menu-ask.js"></script>
 <script src="/tinymce/tinymce.min.js"></script>
 <script> //
     tinymce.init({
