@@ -15,37 +15,26 @@
     <main class="container">
         <section class="main-content" id="home">
             <div class="card-header">
-                <h1>Todas as discussões</h1>
-                <a class="btn" href="/perguntar">Abrir pergunta</a>
+                <h1><%= category.titulo %> </h1>
             </div>
 
             <div class="card-body">
                 <% discussions.forEach((discussion)=>{ %>
                     <div class="ask">
                         <h3><a class="grid-ask-title" href="/discussao/<%=discussion.slug%>"><%= discussion.titulo %></a></h3>
-                        <div class="grid-ask-user">Perguntado por: Usuário</div>
-                        
+                        <div class="grid-ask-user">Perguntado por: Usuário</div> 
+                        <!-- AINDA FALTA LINKAR O USER -->
                         <div class="grid-ask-category">
                             <a class="btn btn-category" 
-                            href="/categoria/<%= discussion["categorium.slug"] %>"
-                            ><%= discussion["categorium.titulo"] %></a>
+                            href="/categoria/<%= category.slug %>"
+                            ><%= category.titulo %></a>
                         </div>
-                        
-                        <div class="grid-ask-date"><%=result.formatDate(discussion.createdAt) %></div>
+
+                        <div class="grid-ask-date"><%=formatDate(discussion.createdAt) %></div>
                     </div>
                 <% }) %>
                    
-                    <div class="pagination">
-                        <% if(result.page > 2) {%>
-                                <a href="/page/<%= result.page - 1 %>"> << anterior</a>
-                        <%  }else if(result.page === 2){ %>
-                                <a href="/"> << anterior</a>
-                        <%  } %>
-                    
-                        <% if(result.next === true) {%>
-                            <a href="/page/<%= result.page + 1 %>">próximo >></a>
-                        <% }%>
-                    </div>
+                   
                 </div>
             
             </div>
