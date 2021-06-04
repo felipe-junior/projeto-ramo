@@ -48,6 +48,7 @@ input, button{
 
 /*---------- Header ----------*/
 header{
+    z-index: 2; 
     position: sticky;
     top: 0;
     left: 0;
@@ -71,6 +72,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1;
 }
 .menu li{
     margin-left: 20px;
@@ -670,6 +672,9 @@ footer{
     }
     #footer ul{
         flex-wrap: wrap;
+    }
+    .tox{ /*Classe do tinymce*/
+        z-index: 0 !important;
     }
 }
 @media(max-width:420px){
