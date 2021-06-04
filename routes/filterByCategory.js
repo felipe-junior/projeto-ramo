@@ -21,22 +21,4 @@ router.get('/categoria/:slug', async (req, res)=>{
         }
     })        
 })
-/*
- <!-- <div class="pagination">
-                        
-                        
-                        <% if(result.page > 2) {%>
-                            <a href="/page/<%= result.page - 1 %>"> << anterior</a>
-                            <%  }else if(result.page === 2){ %>
-                                <a href="/"> << anterior</a>
-                                <%  } %>
-                                
-                                <% if(result.next === true) {%>
-                                    <a href="/page/<%= result.page + 1 %>">próximo >></a>
-                            <% }%>
-                            
-                    </div> -->
-*/
-
-
 module.exports = router
