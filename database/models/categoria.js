@@ -9,6 +9,10 @@ const categoria = loginConnection.define('categoria', {
     slug:{
         type: sq.STRING,
         allowNull: false
+    },
+    numberOfQuestions:{
+        type: sq.INTEGER,
+        defaultValue: 0
     }
 });
 

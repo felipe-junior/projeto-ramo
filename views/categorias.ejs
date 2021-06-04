@@ -20,11 +20,11 @@
             </div>
 
             <div class="card-body">
-                <% categorias.slice(0, 10).forEach(element => { %>
+                <% categorias.forEach(category => { %>
                     <div class="category">     
-                        <h3><a class="grid-category-title" href="/categoria/<%=element.titulo%>"><%= element.titulo %></a></h3>        
+                        <h3><a class="grid-category-title" href="/categoria/<%=category.titulo%>"><%= category.titulo %></a></h3>        
                         
-                        <div class="discussions-number"><%= element.qtd %> discussões </div>
+                        <div class="discussions-number"><%= category.numberOfQuestions %> discussões </div>
                     </div>
                 <% }) %>
                    

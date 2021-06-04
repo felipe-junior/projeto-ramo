@@ -39,4 +39,6 @@ Router.post("/salvaresposta", (req, res)=>{
     })
 })
 
+//Falta o metodo delete, usar como base o codigo do arquivo perguntar para atualizar a quantidade de perguntas de uma categoria!
+
 module.exports = Router;
