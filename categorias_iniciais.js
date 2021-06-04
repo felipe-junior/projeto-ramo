@@ -1,22 +1,24 @@
 const rota = require("express")
 const Categoria = require("./database/models/categoria")
 
-//Teste que eu tava fazendo para nós adicionarmos categorias "padrões", que já vão ter adicionadas sem precisar do usuário criar uma categoria
-//Usei as próprias categorias que já tinham colocado no select do front-end, aparentemente está tudo funcionando, mas deixarei o nome como "teste_cat_ini" por enquanto, caso achemos algum erro, podemos tentar encontrar outra forma de fazer
 Categoria.count().then(c =>{
     if(c == 0)
       Categoria.create({
           titulo: "Esporte",
-          slug: "Esporte"
+          slug: "Esporte",
+          numberOfQuestions: '0'
       }).then(Categoria.create({
         titulo: "Notícias",
-        slug: "Notícias"
+        slug: "Notícias",
+        numberOfQuestions: '0'
     })).then(Categoria.create({
         titulo: "Ciências",
-        slug: "Ciências"
+        slug: "Ciências",
+        numberOfQuestions: '0'
     })).then(Categoria.create({
         titulo: "Curiosidades",
-        slug: "Curiosidades"
+        slug: "Curiosidades",
+        numberOfQuestions: '0'
     }))
   })
 

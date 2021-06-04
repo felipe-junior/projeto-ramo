@@ -1,7 +1,7 @@
 const {Sequelize} = require('sequelize')
 const fs = require('fs')
 
-const json = fs.readFileSync(__dirname + "/senha.json", {encoding: 'utf8'})
+const json = fs.readFileSync(__dirname + "\\senha.json", {encoding: 'utf8'})
 const admin = JSON.parse(json)
 
 console.log(admin)

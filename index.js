@@ -2,9 +2,13 @@ const express = require('express')
 const app = express()
 const database = require("./database/databaseConfig")
 const porta = 8080
+const cat_ini = require("./categorias_iniciais")
 
 database.authenticate()
-.then(()=> console.log("Autenticado"))
+.then(()=> {
+    cat_ini()
+    console.log("Autenticado")
+})
 .catch((err)=>console.log("Erro "+ err))
 
 app.use(express.urlencoded({extended: true}))
