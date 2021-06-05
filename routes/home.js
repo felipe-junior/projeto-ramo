@@ -57,7 +57,7 @@ rota.get("/page/:id", async (req, res)=>{
     const result = {
       next: next,
       page: parseInt(id),
-      data: formataData
+      data: formatDate
     }
     res.render("index", {discussions: discussions.rows, result})
   })

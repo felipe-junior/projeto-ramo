@@ -6,17 +6,53 @@ const Resposta = require("../database/models/resposta")
 const formataData = require("../public/js/formataData")
 
 //Rotas Get
-Router.get("/discussao/:slug", (req, res)=>{
-
-    let slug = req.params.slug
-
-    Pergunta.findOne({where:{slug}}).then(ask=>{
+Router.get("/discussao/:slug", async (req, res)=>{
+    const {slug} = req.params
+    const id = 1
+    await Pergunta.findOne({where:{slug}}).then(ask=>{
         if(ask != undefined){
-
-            let result = {data: formataData}
-
-            Resposta.findAll({where:{perguntumId: ask.id}}).then(answers=>{
-               res.render("discussao", {ask, answers, result}) 
+            const limit = 6
+            const offset = limit * id - limit
+            let next = true
+            
+             Resposta.findAndCountAll({where:{perguntumId: ask.id}, limit, offset}).then(answers=>{
+                if( offset + limit >= answers.count)
+                    next = false
+                console.log(slug)
+                let result = {
+                    data: formataData,
+                    next,
+                    page: parseInt(id),
+                    slug
+                }
+                res.render("discussao", {ask, answers: answers.rows, result}) 
+            })
+        }
+        else{
+            res.redirect("/")
+        }
+    })
+})
+Router.get("/discussao/:slug/page/:id", async (req, res)=>{
+    const {slug, id} = req.params
+    
+    await Pergunta.findOne({where:{slug}}).then(ask=>{
+        if(ask != undefined){
+            const limit = 6
+            const offset = limit * id - limit
+            let next = true
+            
+             Resposta.findAndCountAll({where:{perguntumId: ask.id}, limit, offset}).then(answers=>{
+                if( offset + limit >= answers.count)
+                    next = false
+                console.log(slug)
+                let result = {
+                    data: formataData,
+                    next,
+                    page: parseInt(id),
+                    slug
+                }
+                res.render("discussao", {ask, answers: answers.rows, result}) 
             })
         }
         else{

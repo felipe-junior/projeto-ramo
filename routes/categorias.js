@@ -4,17 +4,47 @@ const Pergunta = require("../database/models/pergunta")
 const slugify = require("slugify")
 
 //Rotas Get
-Router.get("/categorias", (req, res) => {
-    Categoria.findAll().then(categorias => {
-        res.render("categorias", {categorias})
+Router.get("/categorias", async (req, res) => {
+    let id = 1
+    const limit = 10
+    const offset = limit * id - limit
+    
+    
+    Categoria.findAndCountAll({limit: limit, order: [['numberOfQuestions', 'DESC']]}).then(categorias => {
+        let next = true
+        if (offset + limit >= categorias.count)
+            next = false
+        const result = {
+            next,
+            page: parseInt(id)
+        }
+        res.render("categorias", {categorias: categorias.rows, result})
     }).catch(err =>{
         console.log(err)
     })
 })
 
-Router.get("/categorias/novo", (req, res)=>{
-
+Router.get("/categoria/page/:id", async (req, res)=>{
+    let {id} = req.params
+    if(isNaN(id) || id===0){
+        id = 1
+        console.log("entrou")
+    }
+    const limit = 10
+    const offset = (limit * id) - limit
     
+    Categoria.findAndCountAll({limit, offset, order: [["numberOfQuestions", "DESC"]]}).then(categorias =>{
+        let next = true
+        if (offset + limit >= categorias.count)
+            next = false
+        const result = {
+            next,
+            page: parseInt(id)
+        }
+        res.render("categorias", {categorias: categorias.rows, result})
+    })
+})
+Router.get("/categorias/novo", (req, res)=>{
     res.render("nova-categoria")
 })
 

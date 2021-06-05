@@ -47,8 +47,20 @@
                     <span><%= result.data(answer.createdAt) %></span>
                     <p><%- answer.desc %></p>
                 </article>
+                
             </section>
-        <% })%>
+            <% })%>
+            <div class="see-more pagination">          
+                <% if (result.page > 2) { %>
+                    <a href="/discussao/<%= result.slug%>/page/<%= result.page -1 %> "> << Anterior</a>
+                    <% } else if(result.page ===2){ %>
+                        <a href="/discussao/<%=result.slug%> "> << Anterior</a>
+                        <%
+                } %>   
+                <% if (result.next) { %>
+                    <a href="/discussao/<%= result.slug %>/page/<%= result.page+1 %> ">Proximo >> </a>                      
+                <% } %>
+            </div>
 
         <section id="answare-form">
             <h2>Responder discussão</h2>
