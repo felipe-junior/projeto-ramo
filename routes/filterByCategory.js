@@ -1,21 +1,20 @@
-const Category = require('../database/models/categoria')
-const Pergunta = require('../database/models/pergunta')
+const Category = require('../database/models/category')
+const Question = require('../database/models/question')
 const formatDate = require('../public/js/formataData')
 const router = require('express').Router()
 
 
-router.get('/categoria/:slug', async (req, res)=>{
+router.get("/categoria/:slug", async (req, res)=>{
     const slug = req.params.slug
     
     Category.findOne({
         where: {
             slug: slug
         }, 
-        include: [{model: Pergunta}],
+        include: [{model: Question}]
     }).then(category =>{
         if(category!=undefined){
-            
-            res.render("filterByCategory", {discussions: category.pergunta, formatDate, category})
+            res.render("filterByCategory", {discussions: category.questions, formatDate, category})
         } else{
             res.redirect("/")
         }

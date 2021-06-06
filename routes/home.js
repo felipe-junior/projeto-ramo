@@ -1,18 +1,18 @@
 const rota = require('express').Router()
-const Categoria = require('../database/models/categoria')
-const Pergunta = require('../database/models/pergunta')
+const Category = require('../database/models/category')
+const Question = require('../database/models/question')
 const formatDate = require('../public/js/formataData')
 
 //Rotas get
 rota.get("/", async (req, res)=>{
   const limit = 20
   const offset = 0
-   Pergunta.findAndCountAll({
+   Question.findAndCountAll({
     order:[['id', 'DESC']],
-    include: [{model: Categoria}],
+    include: [{model: Category}],
     offset: offset, 
     limit:limit,
-     raw: true
+     //raw: true    //Foi o que tava dando problema no JOIN antes
   }).then(discussions =>{
     let next
     if(offset + limit >= discussions.count){
@@ -41,9 +41,9 @@ rota.get("/page/:id", async (req, res)=>{
   const limit = 20
   const offset = id * limit -limit
   
-  Pergunta.findAndCountAll({
+  Question.findAndCountAll({
     order:[['id', 'DESC']],
-    include: [{model: Categoria}],
+    include: [{model: Category}],
     offset: offset, 
     limit:limit
     }).then(discussions =>{
@@ -57,7 +57,7 @@ rota.get("/page/:id", async (req, res)=>{
     const result = {
       next: next,
       page: parseInt(id),
-      data: formataData
+      formatDate: formatDate
     }
     res.render("index", {discussions: discussions.rows, result})
   })

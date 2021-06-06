@@ -1,8 +1,8 @@
 const loginConnection = require("../databaseConfig")
 const sq = require("sequelize")
 
-const categoria = loginConnection.define('categoria', {
-    titulo:{
+const category = loginConnection.define('categories', {
+    title:{
         type: sq.STRING,
         allowNull: false
     },
@@ -16,5 +16,5 @@ const categoria = loginConnection.define('categoria', {
     }
 });
 
-categoria.sync({force: false});
-module.exports = categoria;
+category.sync({force: false})
+module.exports = category

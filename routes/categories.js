@@ -1,12 +1,11 @@
 const Router = require("express").Router()
-const Categoria = require("../database/models/categoria")
-const Pergunta = require("../database/models/pergunta")
+const Category = require("../database/models/category")
 const slugify = require("slugify")
 
 //Rotas Get
 Router.get("/categorias", (req, res) => {
-    Categoria.findAll().then(categorias => {
-        res.render("categorias", {categorias})
+    Category.findAll().then(categories => {
+        res.render("categories", {categories})
     }).catch(err =>{
         console.log(err)
     })
@@ -15,22 +14,22 @@ Router.get("/categorias", (req, res) => {
 Router.get("/categorias/novo", (req, res)=>{
 
     
-    res.render("nova-categoria")
+    res.render("newCategory")
 })
 
 //Rotas Post
 Router.post("/salvarcategoria", (req, res)=>{
     let t = req.body.title;
     if(t != ""){
-        Categoria.create({
-            titulo: t,
+        Category.create({
+            title: t,
             slug: slugify(t)
         }).then(() =>{
-            res.redirect("/categorias");
+            res.redirect("/categorias")
         })
     }
     else{
-        res.redirect("/categorias/novo");
+        res.redirect("/categorias/novo")
     }
 })
 
