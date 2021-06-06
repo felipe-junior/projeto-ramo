@@ -1,20 +1,57 @@
 const Router = require("express").Router()
 const Question = require("../database/models/question")
 const Answer = require("../database/models/answer")
-const formatDate = require("../public/js/formataData")
+const formatDate = require("../public/js/formatDate")
 
 //Rotas Get
-Router.get("/discussao/:slug", (req, res)=>{
-
-    let slug = req.params.slug
-
-    Question.findOne({where:{slug}}).then(ask=>{
+Router.get("/discussao/:slug", async (req, res)=>{
+    const {slug} = req.params
+    const id = 1
+    await Question.findOne({where:{slug}}).then(ask=>{
         if(ask != undefined){
+            const limit = 6
+            const offset = limit * id - limit
+            let next = true
 
-            let result = {date: formatDate}
+            Answer.findAndCountAll({where:{questionId: ask.id}, limit, offset}).then(answers=>{
+                if( offset + limit >= answers.count)
+                    next = false
+                console.log(slug)
+                let result = {
+                    date: formatDate,
+                    next,
+                    page: parseInt(id),
+                    slug
+                }
+                res.render("discussion", {ask, answers: answers.rows, result}) 
+            })
+        }
+        else{
+            res.redirect("/")
+        }
+    })
+})
 
-            Answer.findAll({where:{questionId: ask.id}}).then(answers=>{
-               res.render("discussion", {ask, answers, result}) 
+Router.get("/discussao/:slug/page/:id", async (req, res)=>{
+    const {slug, id} = req.params
+    
+    await Question.findOne({where:{slug}}).then(ask=>{
+        if(ask != undefined){
+            const limit = 6
+            const offset = limit * id - limit
+            let next = true
+            
+             Answer.findAndCountAll({where:{questionId: ask.id}, limit, offset}).then(answers=>{
+                if( offset + limit >= answers.count)
+                    next = false
+                console.log(slug)
+                let result = {
+                    date: formatDate,
+                    next,
+                    page: parseInt(id),
+                    slug
+                }
+                res.render("discussion", {ask, answers: answers.rows, result}) 
             })
         }
         else{
@@ -29,7 +66,7 @@ Router.post("/salvaresposta", (req, res)=>{
     let askId = req.body.askId
     let askSlug = req.body.askSlug
 
-    Resposta.create({
+    Answer.create({
         description,
         questionId: askId
     }).then(()=>{

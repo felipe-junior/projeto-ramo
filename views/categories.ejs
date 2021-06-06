@@ -28,8 +28,16 @@
                     </div>
                 <% }) %>
                    
-                <div class="see-more">
-                    <a href="">Ver mais</a>
+                <div class="see-more pagination">          
+                    <% if (result.page > 2) { %>
+                        <a href="/categoria/page/<%= result.page -1 %> "> << Anterior</a>
+                        <% } else if(result.page ===2){ %>
+                            <a href="/categorias"> << Anterior</a>
+                            <%
+                    } %>   
+                    <% if (result.next) { %>
+                        <a href="/categoria/page/<%= result.page+ 1 %> ">Proximo >> </a>                      
+                    <% } %>
                 </div>
                 
         </section>

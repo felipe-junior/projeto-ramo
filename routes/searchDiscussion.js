@@ -3,7 +3,7 @@ const Question = require("../database/models/question")
 const Category = require("../database/models/category")
 const slugify = require("slugify")
 const {Op} = require('sequelize')
-const formatDate = require("../public/js/formataData")
+const formatDate = require("../public/js/formatDate")
 
 Router.post("/pesquisardiscussao", (req, res)=>{
     let search = req.body.search.trim()

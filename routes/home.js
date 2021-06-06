@@ -1,7 +1,7 @@
 const rota = require('express').Router()
 const Category = require('../database/models/category')
 const Question = require('../database/models/question')
-const formatDate = require('../public/js/formataData')
+const formatDate = require('../public/js/formatDate')
 
 //Rotas get
 rota.get("/", async (req, res)=>{

@@ -47,8 +47,20 @@
                     <span><%= result.date(answer.createdAt) %></span>
                     <p><%- answer.description %></p>
                 </article>
+                
             </section>
-        <% })%>
+            <% })%>
+            <div class="see-more pagination">          
+                <% if (result.page > 2) { %>
+                    <a href="/discussao/<%= result.slug%>/page/<%= result.page -1 %> "> << Anterior</a>
+                    <% } else if(result.page ===2){ %>
+                        <a href="/discussao/<%=result.slug%> "> << Anterior</a>
+                        <%
+                } %>   
+                <% if (result.next) { %>
+                    <a href="/discussao/<%= result.slug %>/page/<%= result.page+1 %> ">Proximo >> </a>                      
+                <% } %>
+            </div>
 
         <section id="answare-form">
             <h2>Responder discussão</h2>
@@ -56,7 +68,7 @@
             <form method="POST" action="/salvaresposta">
                 <div id="answer-text">
                     <label>Sua resposta</label>
-                    <textarea id="answer" name="body"></textarea>
+                    <textarea id="answer" name="description"></textarea>
                     <input type="hidden" name="askId" value="<%= ask.id %>">
                     <input type="hidden" name="askSlug" value="<%= ask.slug %>">
                 </div>
