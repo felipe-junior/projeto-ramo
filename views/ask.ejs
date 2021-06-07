@@ -28,8 +28,8 @@
                 
                 <div id="categories">
                     <select name="category" required>
-                        <% categorias.forEach(category => { %>
-                            <option value="<%= category.id %>"><%= category.titulo%> </option> 
+                        <% categories.forEach(category => { %>
+                            <option value="<%= category.id %>"><%= category.title%> </option> 
                         <% }); %> 
                     </select>
 

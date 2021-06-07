@@ -1,8 +1,7 @@
 const loginConnection = require("../databaseConfig")
 const sq = require("sequelize")
 
-//Nome do tabela "login"
-const login = loginConnection.define("login", {
+const login = loginConnection.define("logins", {
     username: {
         type: sq.STRING,
         allowNull: false  
@@ -11,7 +10,7 @@ const login = loginConnection.define("login", {
         type: sq.STRING,
         allowNull: false
     },
-    senha: {
+    password: {
         type: sq.STRING,
         allowNull: false
     }

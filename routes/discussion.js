@@ -1,31 +1,29 @@
-const Router = require("express").Router({})
-const Pergunta = require("../database/models/pergunta")
-const Categoria = require("../database/models/categoria")
-const slugify = require("slugify")
-const Resposta = require("../database/models/resposta")
-const formataData = require("../public/js/formataData")
+const Router = require("express").Router()
+const Question = require("../database/models/question")
+const Answer = require("../database/models/answer")
+const formatDate = require("../public/js/formatDate")
 
 //Rotas Get
 Router.get("/discussao/:slug", async (req, res)=>{
     const {slug} = req.params
     const id = 1
-    await Pergunta.findOne({where:{slug}}).then(ask=>{
+    await Question.findOne({where:{slug}}).then(ask=>{
         if(ask != undefined){
             const limit = 6
             const offset = limit * id - limit
             let next = true
-            
-             Resposta.findAndCountAll({where:{perguntumId: ask.id}, limit, offset}).then(answers=>{
+
+            Answer.findAndCountAll({where:{questionId: ask.id}, limit, offset}).then(answers=>{
                 if( offset + limit >= answers.count)
                     next = false
                 console.log(slug)
                 let result = {
-                    data: formataData,
+                    date: formatDate,
                     next,
                     page: parseInt(id),
                     slug
                 }
-                res.render("discussao", {ask, answers: answers.rows, result}) 
+                res.render("discussion", {ask, answers: answers.rows, result}) 
             })
         }
         else{
@@ -33,26 +31,27 @@ Router.get("/discussao/:slug", async (req, res)=>{
         }
     })
 })
+
 Router.get("/discussao/:slug/page/:id", async (req, res)=>{
     const {slug, id} = req.params
     
-    await Pergunta.findOne({where:{slug}}).then(ask=>{
+    await Question.findOne({where:{slug}}).then(ask=>{
         if(ask != undefined){
             const limit = 6
             const offset = limit * id - limit
             let next = true
             
-             Resposta.findAndCountAll({where:{perguntumId: ask.id}, limit, offset}).then(answers=>{
+             Answer.findAndCountAll({where:{questionId: ask.id}, limit, offset}).then(answers=>{
                 if( offset + limit >= answers.count)
                     next = false
                 console.log(slug)
                 let result = {
-                    data: formataData,
+                    date: formatDate,
                     next,
                     page: parseInt(id),
                     slug
                 }
-                res.render("discussao", {ask, answers: answers.rows, result}) 
+                res.render("discussion", {ask, answers: answers.rows, result}) 
             })
         }
         else{
@@ -63,13 +62,13 @@ Router.get("/discussao/:slug/page/:id", async (req, res)=>{
 
 //Rotas Post
 Router.post("/salvaresposta", (req, res)=>{
-    let desc = req.body.desc
+    let description = req.body.description
     let askId = req.body.askId
     let askSlug = req.body.askSlug
 
-    Resposta.create({
-        desc,
-        perguntumId: askId
+    Answer.create({
+        description,
+        questionId: askId
     }).then(()=>{
         res.redirect("/discussao/" + askSlug)
     })

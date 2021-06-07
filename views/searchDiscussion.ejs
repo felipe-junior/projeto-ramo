@@ -20,13 +20,13 @@
             </div>
 
             <div class="card-body">
-                <% pergunta.forEach((discussion)=>{ %>
+                <% questions.forEach((discussion)=>{ %>
                     <div class="ask">
-                        <h3><a class="grid-ask-title" href="/discussao/<%=discussion.slug%>"><%= discussion.titulo %></a></h3>
+                        <h3><a class="grid-ask-title" href="/discussao/<%=discussion.slug%>"><%= discussion.title %></a></h3>
                         <div class="grid-ask-user">Perguntado por: Usuário</div>
 
-                        <div class="grid-ask-category"><a class="btn btn-category" href="/categoria/<%= discussion.categorium.slug %>"><%= discussion.categorium.titulo %></a></div>
-                        <div class="grid-ask-date"><%=result.data(discussion.createdAt) %></div>
+                        <div class="grid-ask-category"><a class="btn btn-category" href="/categoria/<%= discussion.category.slug %>"><%= discussion.category.title %></a></div>
+                        <div class="grid-ask-date"><%=result.date(discussion.createdAt) %></div>
                     </div>
                 <% }) %>
                    

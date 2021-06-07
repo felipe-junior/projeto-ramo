@@ -1,24 +1,23 @@
 const Router = require("express").Router()
-const Categoria = require("../database/models/categoria")
-const Pergunta = require("../database/models/pergunta")
+const Category = require("../database/models/category")
 const slugify = require("slugify")
 
 //Rotas Get
-Router.get("/categorias", async (req, res) => {
+Router.get("/categorias", (req, res) => {
     let id = 1
     const limit = 10
     const offset = limit * id - limit
-    
-    
-    Categoria.findAndCountAll({limit: limit, order: [['numberOfQuestions', 'DESC']]}).then(categorias => {
+
+
+    Category.findAndCountAll({limit: limit, order: [['numberOfQuestions', 'DESC']]}).then(categories => {
         let next = true
-        if (offset + limit >= categorias.count)
+        if (offset + limit >= categories.count)
             next = false
         const result = {
             next,
             page: parseInt(id)
         }
-        res.render("categorias", {categorias: categorias.rows, result})
+        res.render("categories", {categories: categories.rows, result})
     }).catch(err =>{
         console.log(err)
     })
@@ -33,34 +32,37 @@ Router.get("/categoria/page/:id", async (req, res)=>{
     const limit = 10
     const offset = (limit * id) - limit
     
-    Categoria.findAndCountAll({limit, offset, order: [["numberOfQuestions", "DESC"]]}).then(categorias =>{
+    Category.findAndCountAll({limit, offset, order: [["numberOfQuestions", "DESC"]]}).then(categories =>{
         let next = true
-        if (offset + limit >= categorias.count)
+        if (offset + limit >= categories.count)
             next = false
         const result = {
             next,
             page: parseInt(id)
         }
-        res.render("categorias", {categorias: categorias.rows, result})
+        res.render("categories", {categories: categories.rows, result})
     })
 })
+
 Router.get("/categorias/novo", (req, res)=>{
-    res.render("nova-categoria")
+
+    
+    res.render("newCategory")
 })
 
-//Rotas Post
+//Rota Post
 Router.post("/salvarcategoria", (req, res)=>{
     let t = req.body.title;
     if(t != ""){
-        Categoria.create({
-            titulo: t,
+        Category.create({
+            title: t,
             slug: slugify(t)
         }).then(() =>{
-            res.redirect("/categorias");
+            res.redirect("/categorias")
         })
     }
     else{
-        res.redirect("/categorias/novo");
+        res.redirect("/categorias/novo")
     }
 })
 

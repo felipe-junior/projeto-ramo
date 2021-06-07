@@ -1,43 +1,43 @@
-const Router = require("express").Router({})
-const Pergunta = require("../database/models/pergunta")
-const Categoria = require("../database/models/categoria")
+const Router = require("express").Router()
+const Question = require("../database/models/question")
+const Category = require("../database/models/category")
 const slugify = require("slugify")
 const {Op} = require('sequelize')
-const formataData = require("../public/js/formataData")
+const formatDate = require("../public/js/formatDate")
 
 Router.post("/pesquisardiscussao", (req, res)=>{
-    
-    if(req.body.search === ''){
+    let search = req.body.search.trim()
+    if(search == ""){
         res.redirect("/")
     }
     else{
-        let slug = slugify(req.body.search)
+        let slug = slugify(search)
 
         res.redirect("/pesquisa/"+ slug)
     }
     
 })
 
-//Rota Get
+//Rotas Get
 Router.get("/pesquisa/:slug", (req,res)=>{
     const limit = 20
     const offset = 0
     let slug = req.params.slug
     let title = slug.split("-").join(" ")
-    Pergunta.findAndCountAll({
-        include:[{model: Categoria}],
+    Question.findAndCountAll({
+        include:[{model: Category}],
         order:[['id', 'DESC']],
         where: {
-            titulo: {
+            title: {
                 [Op.like]: '%'+title+'%'
             }
         },
         offset: offset, 
         limit:limit
-    }).then(pergunta =>{
+    }).then(questions =>{
         
         let next
-        if(offset + limit >= pergunta.count){
+        if(offset + limit >= questions.count){
             next = false
         } else{
             next = true
@@ -46,9 +46,9 @@ Router.get("/pesquisa/:slug", (req,res)=>{
         const result = {
             next: next,
             page: 1,
-            data: formataData
+            date: formatDate
         }
-        res.render("pesquisa-discussao", {pergunta: pergunta.rows, title, result})
+        res.render("searchDiscussion", {questions: questions.rows, title, result})
     })
    
 })
@@ -68,19 +68,19 @@ Router.get("/pesquisa/:slug/page/:id", (req,res)=>{
     const limit = 20
     const offset = id * limit - limit
 
-    Pergunta.findAndCountAll({
+    Question.findAndCountAll({
         order:[['id', 'DESC']],
-        include:[{model: Categoria}],
+        include:[{model: Category}],
         where: {
-            titulo: {
+            title: {
                 [Op.like]: '%'+title+'%'
             }
         },
         offset: offset, 
         limit:limit
-    }).then(pergunta =>{
+    }).then(questions =>{
         let next
-        if(offset + limit >= pergunta.count){
+        if(offset + limit >= questions.count){
             next= false
           } else{
             next= true
@@ -89,9 +89,9 @@ Router.get("/pesquisa/:slug/page/:id", (req,res)=>{
           const result = {
             next: next,
             page: parseInt(id),
-            data: formataData
+            date: formatDate
           }
-        res.render("pesquisa-discussao", {pergunta: pergunta.rows, title, result})
+        res.render("searchDiscussion", {questions: questions.rows, title, result})
     })
    
 })
