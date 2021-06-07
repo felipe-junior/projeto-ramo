@@ -1,7 +1,7 @@
-const Router = require("express")
 const Category = require("./database/models/category")
 
-Category.count().then(count =>{
+async function initialCategories(){
+  await Category.count().then(count =>{
     if(count == 0)
       Category.create({
           title: "Esporte",
@@ -21,6 +21,6 @@ Category.count().then(count =>{
         numberOfQuestions: '0'
     }))
   })
+}
 
-
-module.exports = Router;
+module.exports = initialCategories

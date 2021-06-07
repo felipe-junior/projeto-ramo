@@ -1,10 +1,10 @@
-const Category = require('../database/models/category')
-const Question = require('../database/models/question')
-const formatDate = require('../public/js/formatDate')
-const router = require('express').Router()
+const Category = require("../database/models/category")
+const Question = require("../database/models/question")
+const formatDate = require("../public/js/formatDate")
+const Router = require("express").Router()
 
 
-router.get("/categoria/:slug", async (req, res)=>{
+Router.get("/categoria/:slug", async (req, res)=>{
     const slug = req.params.slug
     
     Category.findOne({
@@ -20,4 +20,4 @@ router.get("/categoria/:slug", async (req, res)=>{
         }
     })        
 })
-module.exports = router
+module.exports = Router

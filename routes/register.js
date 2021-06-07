@@ -1,4 +1,4 @@
-const Router = require("express").Router({})
+const Router = require("express").Router()
 const loginTabela = require("../database/models/login")
 
 Router.get("/cadastrar", (req, res)=>{

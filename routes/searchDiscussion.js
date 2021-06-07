@@ -2,7 +2,7 @@ const Router = require("express").Router()
 const Question = require("../database/models/question")
 const Category = require("../database/models/category")
 const slugify = require("slugify")
-const {Op} = require('sequelize')
+const {Op} = require("sequelize")
 const formatDate = require("../public/js/formatDate")
 
 Router.post("/pesquisardiscussao", (req, res)=>{
