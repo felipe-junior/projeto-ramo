@@ -103,5 +103,4 @@ dist
 # TernJS port file
 .tern-port
 
-database/senha
-database/senha.json
+database/password.json

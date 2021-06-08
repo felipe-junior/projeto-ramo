@@ -15,19 +15,19 @@
     <main class="container">
         <section class="main-content" id="home">
             <div class="card-header">
-                <h1><%= category.titulo %> </h1>
+                <h1><%= category.title %> </h1>
             </div>
 
             <div class="card-body">
                 <% discussions.forEach((discussion)=>{ %>
                     <div class="ask">
-                        <h3><a class="grid-ask-title" href="/discussao/<%=discussion.slug%>"><%= discussion.titulo %></a></h3>
+                        <h3><a class="grid-ask-title" href="/discussao/<%=discussion.slug%>"><%= discussion.title %></a></h3>
                         <div class="grid-ask-user">Perguntado por: Usuário</div> 
                         <!-- AINDA FALTA LINKAR O USER -->
                         <div class="grid-ask-category">
                             <a class="btn btn-category" 
                             href="/categoria/<%= category.slug %>"
-                            ><%= category.titulo %></a>
+                            ><%= category.title %></a>
                         </div>
 
                         <div class="grid-ask-date"><%=formatDate(discussion.createdAt) %></div>

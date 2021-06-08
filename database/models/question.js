@@ -1,14 +1,14 @@
 const loginConnection = require("../databaseConfig")
 const sq = require("sequelize")
-const categoria = require("./categoria");
-const usuario = require("./login");
+const category = require("./category");
+const user = require("./login");
 
-const pergunta = loginConnection.define('pergunta', {
-    titulo:{
+const question = loginConnection.define('questions', {
+    title:{
         type: sq.STRING,
         allowNull: false
     },
-    desc:{
+    description:{
         type: sq.TEXT,
         allowNull: false
     },
@@ -23,9 +23,9 @@ const pergunta = loginConnection.define('pergunta', {
 
 });
 
-pergunta.belongsTo(categoria);
-categoria.hasMany(pergunta);
-pergunta.belongsTo(usuario);
-usuario.hasMany(pergunta)
-pergunta.sync({force: false});
-module.exports = pergunta;
+question.belongsTo(category)
+category.hasMany(question)
+question.belongsTo(user)
+user.hasMany(question)
+question.sync({force: false})
+module.exports = question
