@@ -20,5 +20,5 @@ answer.belongsTo(question)
 user.hasMany(answer)
 answer.belongsTo(user)
 
-answer.sync({force: false})
+answer.sync({force: false, alter: true})
 module.exports = answer
