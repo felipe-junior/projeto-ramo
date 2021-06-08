@@ -16,19 +16,64 @@
         <section id="signup">
             <h1>Cadastrar-se</h1> <!--Troquei para H1, pois influencia na pesquisa dos sites no google, portanto é uma boa prática-->
             
-            <form method="POST" action="/cadastrar">
-                <input type="text" placeholder="Nome de usuário ou ID" required>
-                <input type="email" placeholder="E-mail" required><br>
-                <input type="password" placeholder="Senha" required><br>
-                <input type="password" placeholder="Confirmar senha" required><br>
+            <form method="POST" action="/cadastrar" onsubmit="validation(event, this)">
+                <input type="text" name="user" id="user" placeholder="Nome de usuário ou ID" aria-invalid="true" required>
+                <font color="red" size="2">
+                    <p id="validateUser" style="display: none;">Campo Obrigatório.</p><br>
+                </font>
+                <input type="email" name="email" id="email" placeholder="E-mail" aria-invalid="true" required>
+                <input type="password" name="password" id="password" placeholder="Senha" aria-invalid="true" required>
+                <font color="red" size="2">
+                    <p id="validateMin" style="display: none;">Use 8 caracteres ou mais para sua senha.</p><br>
+                </font>
+                <input type="password" id="confirmPassword" placeholder="Confirmar senha" required>
+                <font color="red" size="2">
+                    <p id="validate" style="display: none;">As senhas não são iguais. Tente novamente!</p><br>
+                </font>
                 <button type="submit">Cadastrar-se</button>
             </form>
-
+            
             <a href="/entrar" id="back-button">Voltar ao login</a>
 
         </section>
     </main>
+    <script>
+        function validation(event, form){
+            event.preventDefault()
+            let user = document.getElementById("user").value.replace(/\s+/g,'')
+            let sizeUser = user.length
+            let password = document.getElementById("password").value
+            let confirmPassword = document.getElementById("confirmPassword").value
+            let sizePassword = document.getElementById("password").value.length
 
+            if(sizeUser == 0){
+                document.getElementById("validateUser").style.display = "block"
+            }else{
+                document.getElementById("validateUser").style.display = "none"
+            }
+
+            if(document.getElementById("validate").style.display = "block"){
+                document.getElementById("validate").style.display = "none"
+            }
+            if(document.getElementById("validateMin").style.display = "block"){
+                document.getElementById("validateMin").style.display = "none"
+            }
+
+            if(sizePassword < 8 && password != confirmPassword){
+                document.getElementById("validateMin").style.display = "block"
+            }else{
+                if(sizePassword < 8){
+                    document.getElementById("validateMin").style.display = "block"
+                }else{
+                    if(password != confirmPassword){
+                        document.getElementById("validate").style.display = "block"
+                    }else{
+                        form.submit()
+                    }
+                }
+            }   
+        }
+    </script>
     <%-include("partials/footer.ejs") %>
 </body>
 </html>
