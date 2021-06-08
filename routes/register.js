@@ -3,7 +3,7 @@ const Register = require("../database/models/login")
 const bcrypt = require("bcryptjs")
 
 Router.get("/cadastrar", (req, res)=>{
-        res.render("register")
+    res.render("register")
 })
 
 Router.post("/cadastrar", (req, res) =>{
