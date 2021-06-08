@@ -16,7 +16,7 @@
         <section class="main-content" id="new-ask">
             <h1>Faça uma nova pergunta</h1> <!--Troquei para H1, pois influencia na pesquisa dos sites no google, portanto é uma boa prática-->
 
-            <form action="/salvarpergunta" method="post">
+            <form action="/salvarpergunta" method="post" onsubmit="confirmDelete(event, this)">
                 <div id="title">
                     <label>Título da pergunta</label>
                     <input placeholder="Digite o título" type="text" name="title" required>
@@ -53,5 +53,21 @@
         selector: "#description_ask",
         plugins: ["advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons"]
     })
+</script>
+
+<script>
+    //Função que confirma se a categoria será apagada ou não
+    function confirmDelete(event, form){
+
+        let tinymce = document.getElementById("description_ask")
+
+        if(tinymce.value == "" || tinymce.value == undefined){
+            event.preventDefault() //Método que interrompe o evento
+            alert("Atenção: Preencha os campos antes de enviar a pergunta ! \n\nObs: Se você já preencheu os campos, clique em perguntar novamente para confirmar o envio.")
+        }
+        else{
+            form.submit()
+        }
+    }
 </script>
 

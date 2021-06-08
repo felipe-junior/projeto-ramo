@@ -65,7 +65,7 @@
         <section id="answare-form">
             <h2>Responder discussão</h2>
 
-            <form method="POST" action="/salvaresposta">
+            <form method="POST" action="/salvaresposta" onsubmit="confirmDelete(event, this)">
                 <div id="answer-text">
                     <label>Sua resposta</label>
                     <textarea id="answer" name="description"></textarea>
@@ -89,4 +89,20 @@
         selector: "#answer",
         plugins: ["advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons"]
     })
+</script>
+
+<script>
+    //Função que confirma se a categoria será apagada ou não
+    function confirmDelete(event, form){
+
+        let tinymce = document.getElementById("answer")
+
+        if(tinymce.value == "" || tinymce.value == undefined){
+            event.preventDefault() //Método que interrompe o evento
+            alert("Atenção: Preencha os campos antes de enviar a resposta ! \n\nObs: Se você já preencheu os campos, clique em responder novamente para confirmar o envio.")
+        }
+        else{
+            form.submit()
+        }
+    }
 </script>
