@@ -15,14 +15,14 @@
     <main class="container">
         <section id="ask-header">
             <h1><%= ask.title %></h1>
-            <span>Postado por: Usuário<!--<%= ask.author %> -->, no dia: <%= result.date(ask.createdAt) %></span>
+            <span>Postado por: <%= ask.login?.username %>, no dia: <%= result.date(ask.createdAt) %></span>
         </section>
 
         <section id="ask-body">
             <section class="comentary-author">
                 <div class="author-img"></div>
                 <div class="author-data">
-                    <div class="author-username"> Usuário <!--<%= ask.author %> --></div>
+                    <div class="author-username"><%= ask.login?.username %></div>
                     <div class="author-date"><%= result.date(ask.createdAt) %></div>
                 </div>
             </section>
@@ -38,7 +38,7 @@
                 <section class="comentary-author">
                     <div class="author-img"></div>
                     <div class="author-data">
-                        <div class="author-username">Usuário</div>
+                        <div class="author-username"><%= answer?.login?.username %> </div>
                         <div class="author-date"><%= result.date(answer.createdAt) %></div>
                     </div>
                 </section>
