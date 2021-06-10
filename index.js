@@ -1,11 +1,15 @@
 const express = require("express")
 const app = express()
 const database = require("./database/databaseConfig")
-const port = 8080
+const session = require('express-session')
+const toMili = require("./public/js/toMili")
 const init_cat = require("./initialCategories")
+const relations = require('./database/models/relations')
+const port = 8080
 
 database.authenticate()
-.then(()=> {
+.then(async ()=> {
+    await relations()
     init_cat()
     console.log("Autenticado")
 })
@@ -15,6 +19,12 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.set("view engine", "ejs")
 app.use(express.static("public"))
+app.use(session({
+    secret: "ashdsayu8gdyu8as",
+    cookie: {
+        maxAge: toMili(20)
+    }
+}))
 
 app.use("/", require("./routes/index")) // A rota index é responsavel por importar todas as rotas
 
