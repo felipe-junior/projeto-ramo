@@ -4,7 +4,7 @@ const database = require("./database/databaseConfig")
 const session = require('express-session')
 const toMili = require("./public/js/toMili")
 const init_cat = require("./initialCategories")
-const relations = require('./database/models/relations')
+const relations = require('./database/relations')
 const port = 8080
 
 database.authenticate()

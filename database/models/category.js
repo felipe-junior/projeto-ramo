@@ -16,5 +16,4 @@ const category = loginConnection.define('categories', {
     }
 });
 
-category.sync({force: false, alter: true})
 module.exports = category

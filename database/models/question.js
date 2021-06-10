@@ -23,9 +23,5 @@ const question = loginConnection.define('questions', {
 
 });
 
-question.belongsTo(category)
-category.hasMany(question)
-question.belongsTo(user)
-user.hasMany(question)
-question.sync({force: false, alter: true})
+
 module.exports = question
