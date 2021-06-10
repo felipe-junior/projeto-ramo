@@ -22,7 +22,7 @@ app.use(express.static("public"))
 app.use(session({
     secret: "ashdsayu8gdyu8as",
     cookie: {
-        maxAge: toMili(20)
+        maxAge: toMili(60*60) // 1hr
     }
 }))
 

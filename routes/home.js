@@ -1,5 +1,6 @@
 const Router = require("express").Router()
 const Category = require('../database/models/category')
+const User = require("../database/models/login")
 const Question = require('../database/models/question')
 const formatDate = require('../public/js/formatDate')
 
@@ -9,7 +10,7 @@ Router.get("/", async (req, res)=>{
   const offset = 0
    Question.findAndCountAll({
     order:[['id', 'DESC']],
-    include: [{model: Category}],
+    include: [{model: Category}, {model: User}],
     offset: offset, 
     limit:limit,
      //raw: true    //Foi o que tava dando problema no JOIN antes
