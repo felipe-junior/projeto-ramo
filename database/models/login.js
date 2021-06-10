@@ -16,5 +16,4 @@ const login = loginConnection.define("logins", {
     }
 })
 
-login.sync({force: false, alter: true})
 module.exports = login

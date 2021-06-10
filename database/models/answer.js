@@ -14,11 +14,4 @@ const answer = loginConnection.define('answers', {
     }
 })
 
-question.hasMany(answer)
-answer.belongsTo(question)
-
-user.hasMany(answer)
-answer.belongsTo(user)
-
-answer.sync({force: false, alter: true})
 module.exports = answer

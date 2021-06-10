@@ -9,7 +9,7 @@ console.log(admin)
 const config = new Sequelize({
     host: "localhost",
     username: "root",
-    password: admin.password,
+    password:admin.password,
     database: "projetoramo",
     dialect: "mysql",
     timezone: "-03:00"

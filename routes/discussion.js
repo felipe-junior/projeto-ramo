@@ -2,9 +2,11 @@ const Router = require("express").Router()
 const Question = require("../database/models/question")
 const Answer = require("../database/models/answer")
 const formatDate = require("../public/js/formatDate")
+const askAuth = require("../middleware/askAuth")
 
 //Rotas Get
 Router.get("/discussao/:slug", async (req, res)=>{
+    req.session.returnTo = req.originalUrl
     const {slug} = req.params
     const id = 1
     await Question.findOne({where:{slug}}).then(ask=>{
@@ -33,6 +35,7 @@ Router.get("/discussao/:slug", async (req, res)=>{
 })
 
 Router.get("/discussao/:slug/page/:id", async (req, res)=>{
+    req.session.returnTo = req.originalUrl
     const {slug, id} = req.params
     
     await Question.findOne({where:{slug}}).then(ask=>{
@@ -61,7 +64,8 @@ Router.get("/discussao/:slug/page/:id", async (req, res)=>{
 })
 
 //Rotas Post
-Router.post("/salvaresposta", (req, res)=>{
+Router.post("/salvaresposta", askAuth, (req, res)=>{
+   
     let description = req.body.description
     let askId = req.body.askId
     let askSlug = req.body.askSlug

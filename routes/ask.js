@@ -2,16 +2,18 @@ const Router = require("express").Router()
 const Question = require("../database/models/question")
 const Category= require("../database/models/category")
 const slugify = require("slugify")
+const askAuth = require("../middleware/askAuth")
 
 //Rotas Get
 Router.get("/perguntar", (req, res) =>{
+    req.session.returnTo = req.originalUrl
     Category.findAll().then(categories =>{
         res.render("ask", {categories: categories})
     })
 })
 
 //Rotas Post
-Router.post("/salvarpergunta", async (req, res) =>{
+Router.post("/salvarpergunta", askAuth ,async (req, res) =>{
     let t = req.body.title
     let d = req.body.description
     let c = req.body.category
