@@ -20,6 +20,13 @@ Router.post("/pesquisardiscussao", (req, res)=>{
 
 //Rotas Get
 Router.get("/pesquisa/:slug", (req,res)=>{
+    let session
+    if(req.session.user != undefined){
+        session = true
+    }
+    else{
+        session = false
+    }
     const limit = 20
     const offset = 0
     let slug = req.params.slug
@@ -48,11 +55,18 @@ Router.get("/pesquisa/:slug", (req,res)=>{
             page: 1,
             date: formatDate
         }
-        res.render("searchDiscussion", {questions: questions.rows, title, result})
+        res.render("searchDiscussion", {questions: questions.rows, title, result, session})
     })
    
 })
 Router.get("/pesquisa/:slug/page/:id", (req,res)=>{
+    let session
+    if(req.session.user != undefined){
+        session = true
+    }
+    else{
+        session = false
+    }
 
     let id = req.params.id
     let slug = req.params.slug
@@ -91,7 +105,7 @@ Router.get("/pesquisa/:slug/page/:id", (req,res)=>{
             page: parseInt(id),
             date: formatDate
           }
-        res.render("searchDiscussion", {questions: questions.rows, title, result})
+        res.render("searchDiscussion", {questions: questions.rows, title, result, session})
     })
    
 })

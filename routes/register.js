@@ -3,8 +3,15 @@ const Register = require("../database/models/login")
 const bcrypt = require("bcryptjs")
 
 Router.get("/cadastrar", (req, res)=>{
+    let session
+    if(req.session.user != undefined){
+        session = true
+    }
+    else{
+        session = false
+    }
     Register.findAll().then(registers =>{
-        res.render("register", {registers})
+        res.render("register", {registers, session})
     })
 })
 

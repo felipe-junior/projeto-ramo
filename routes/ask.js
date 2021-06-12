@@ -8,8 +8,15 @@ const User = require("../database/models/login")
 //Rotas Get
 Router.get("/perguntar", (req, res) =>{
     req.session.returnTo = req.originalUrl
+    let session
+    if(req.session.user != undefined){
+        session = true
+    }
+    else{
+        session = false
+    }
     Category.findAll().then(categories =>{
-        res.render("ask", {categories: categories})
+        res.render("ask", {categories: categories, session})
     })
 })
 

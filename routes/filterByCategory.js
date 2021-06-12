@@ -5,6 +5,13 @@ const Router = require("express").Router()
 
 
 Router.get("/categoria/:slug", async (req, res)=>{
+    let session
+    if(req.session.user != undefined){
+        session = true
+    }
+    else{
+        session = false
+    }
     const slug = req.params.slug
     
     Category.findOne({
@@ -14,7 +21,7 @@ Router.get("/categoria/:slug", async (req, res)=>{
         include: [{model: Question}]
     }).then(category =>{
         if(category!=undefined){
-            res.render("filterByCategory", {discussions: category.questions, formatDate, category})
+            res.render("filterByCategory", {discussions: category.questions, formatDate, category, session})
         } else{
             res.redirect("/")
         }

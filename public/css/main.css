@@ -249,7 +249,8 @@ main{
 /*---------- Ask page content ----------*/
 #ask-header{
     background-color: white;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0 ;
+    border-bottom: 1px solid #c5c5c5;
     padding: 12px 15px;
     margin-top: 20px;
 }
@@ -257,40 +258,47 @@ main{
 #ask-header span{
     font-size: 14px;
 }
+
 #ask-body, .answares{
     background-color: white;
     border-radius: 10px;
     padding: 12px 15px;
-    margin-top: 15px;
+    margin-bottom: 15px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+}
+#ask-body{
+    border-radius: 0 0 10px 10px;
 }
 /*--- author ---*/
-.comentary-author{ 
-    border-right: 1px solid #707070;
-    width: 100px;
+.comentary-author{
     display: flex;
+    flex-direction: row;
     align-items: center;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 .author-img{
     background-color: grey;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+.author-data{
+    display: flex;
+    flex-direction: flex-start;
 }
 .author-username{
-    margin-top: 10px;
-    text-align: center;
+    margin-right: 10px;
+    text-align: left;
 }
 .author-date{
-    display: none;
+    display: inline-block;
 }
 /*--- text ---*/
 .comentary-text{
     width: 100%;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 .comentary-text p{
     margin-top: 10px;
@@ -306,7 +314,6 @@ main{
     background-color: white;
     border-radius: 10px;
     padding: 12px 15px;
-    margin-top: 40px;
 }
 #answare-form h2{
     font-size: 20px;
@@ -613,46 +620,10 @@ footer{
         justify-self: start;
     }
     /*---------- Discussion page ----------- */
-    #ask-body, .answares{
-        flex-direction: column;
+    #ask-header h1{
+        font-size: 18px;
     }
-    
-    #ask-header span{
-        font-size: 12px;
-    }
-    /*------- comentary -------*/
-
     /*------- author -------*/
-    .comentary-author{ 
-        margin-bottom: 10px;
-        border-right: none;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-    }
-    .author-img{
-        width: 30px;
-        height: 30px;
-    }
-    .author-username{
-        margin-top: none;
-        text-align: left;
-    }
-    .author-username,.author-date{
-        display: inline;
-        margin-left: 10px;
-    }
-    /*------- text -------*/
-    .comentary-text{
-        margin-left: 0;
-    }
-    .comentary-text span{
-        display: none;
-    }
-    .comentary-text p{
-        margin-top: 10px;
-    }
     #answare-form h2{
         font-size: 18px;
     }

@@ -4,7 +4,14 @@ const bcrypt = require("bcryptjs")
 //const Categories = require("../database/models/")
 
 Router.get("/entrar", (req, res)=>{
-    res.render("login")
+    let session
+    if(req.session.user != undefined){
+        session = true
+    }
+    else{
+        session = false
+    }
+    res.render("login",  {session})
 })
 Router.post("/entrar", async (req, res)=>{
     
@@ -20,6 +27,12 @@ Router.post("/entrar", async (req, res)=>{
             }
         }
     })   
+})
+
+Router.get("/sair", (req, res)=>{
+    req.session.user = undefined
+
+    res.redirect("/")
 })
 
 module.exports = Router

@@ -8,6 +8,13 @@ Router.get("/categorias", (req, res) => {
     const limit = 10
     const offset = limit * id - limit
 
+    let session
+    if(req.session.user != undefined){
+        session = true
+    }
+    else{
+        session = false
+    }
 
     Category.findAndCountAll({limit: limit, order: [['numberOfQuestions', 'DESC']]}).then(categories => {
         let next = true
@@ -17,13 +24,21 @@ Router.get("/categorias", (req, res) => {
             next,
             page: parseInt(id)
         }
-        res.render("categories", {categories: categories.rows, result})
+        res.render("categories", {categories: categories.rows, result, session})
     }).catch(err =>{
         console.log(err)
     })
 })
 
 Router.get("/categoria/page/:id", async (req, res)=>{
+    let session
+    if(req.session.user != undefined){
+        session = true
+    }
+    else{
+        session = false
+    }
+
     let {id} = req.params
     if(isNaN(id) || id===0){
         id = 1
@@ -40,14 +55,19 @@ Router.get("/categoria/page/:id", async (req, res)=>{
             next,
             page: parseInt(id)
         }
-        res.render("categories", {categories: categories.rows, result})
+        res.render("categories", {categories: categories.rows, result, session})
     })
 })
 
 Router.get("/categorias/novo", (req, res)=>{
-
-    
-    res.render("newCategory")
+    let session
+    if(req.session.user != undefined){
+        session = true
+    }
+    else{
+        session = false
+    }
+    res.render("newCategory", {session})
 })
 
 //Rota Post
