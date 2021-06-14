@@ -3,16 +3,16 @@ const Register = require("../database/models/login")
 const bcrypt = require("bcryptjs")
 
 Router.get("/cadastrar", (req, res)=>{
-    let session
     if(req.session.user != undefined){
-        session = true
+        res.redirect("/")
     }
     else{
-        session = false
+        let session = false
+        Register.findAll().then(registers =>{
+            res.render("register", {registers, session})
+        })
     }
-    Register.findAll().then(registers =>{
-        res.render("register", {registers, session})
-    })
+    
 })
 
 Router.post("/cadastrar", (req, res) =>{
@@ -33,14 +33,12 @@ Router.post("/cadastrar", (req, res) =>{
                 email: email,
                 password: hash
             }).then(() =>{
+                req.session.user = user.email
                 res.redirect("/")
             })
         }else{
             res.redirect("/cadastrar")
         }
     })
-
-    
-    
 })
 module.exports = Router
