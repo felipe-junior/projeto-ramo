@@ -7,13 +7,7 @@ const User = require("../database/models/login")
 
 //Rotas Get
 Router.get("/discussao/:slug", async (req, res)=>{
-    let session
-    if(req.session.user != undefined){
-        session = true
-    }
-    else{
-        session = false
-    }
+    let session = req.session.user != undefined ? true : false
 
     req.session.returnTo = req.originalUrl
     const {slug} = req.params
@@ -44,13 +38,7 @@ Router.get("/discussao/:slug", async (req, res)=>{
 })
 
 Router.get("/discussao/:slug/page/:id", async (req, res)=>{
-    let session
-    if(req.session.user != undefined){
-        session = true
-    }
-    else{
-        session = false
-    }
+    let session = req.session.user != undefined ? true : false
     req.session.returnTo = req.originalUrl
     const {slug, id} = req.params
     

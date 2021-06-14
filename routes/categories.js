@@ -7,14 +7,7 @@ Router.get("/categorias", (req, res) => {
     let id = 1
     const limit = 10
     const offset = limit * id - limit
-
-    let session
-    if(req.session.user != undefined){
-        session = true
-    }
-    else{
-        session = false
-    }
+    let session = req.session.user != undefined ? true : false
 
     Category.findAndCountAll({limit: limit, order: [['numberOfQuestions', 'DESC']]}).then(categories => {
         let next = true
@@ -31,13 +24,7 @@ Router.get("/categorias", (req, res) => {
 })
 
 Router.get("/categoria/page/:id", async (req, res)=>{
-    let session
-    if(req.session.user != undefined){
-        session = true
-    }
-    else{
-        session = false
-    }
+    let session = req.session.user != undefined ? true : false
 
     let {id} = req.params
     if(isNaN(id) || id===0){
@@ -60,13 +47,7 @@ Router.get("/categoria/page/:id", async (req, res)=>{
 })
 
 Router.get("/categorias/novo", (req, res)=>{
-    let session
-    if(req.session.user != undefined){
-        session = true
-    }
-    else{
-        session = false
-    }
+    let session = req.session.user != undefined ? true : false
     res.render("newCategory", {session})
 })
 

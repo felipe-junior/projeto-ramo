@@ -20,13 +20,7 @@ Router.post("/pesquisardiscussao", (req, res)=>{
 
 //Rotas Get
 Router.get("/pesquisa/:slug", (req,res)=>{
-    let session
-    if(req.session.user != undefined){
-        session = true
-    }
-    else{
-        session = false
-    }
+    let session = req.session.user != undefined ? true : false
     const limit = 20
     const offset = 0
     let slug = req.params.slug
@@ -60,13 +54,7 @@ Router.get("/pesquisa/:slug", (req,res)=>{
    
 })
 Router.get("/pesquisa/:slug/page/:id", (req,res)=>{
-    let session
-    if(req.session.user != undefined){
-        session = true
-    }
-    else{
-        session = false
-    }
+    let session = req.session.user != undefined ? true : false
 
     let id = req.params.id
     let slug = req.params.slug

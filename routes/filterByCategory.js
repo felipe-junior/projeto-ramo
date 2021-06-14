@@ -5,13 +5,7 @@ const Router = require("express").Router()
 
 
 Router.get("/categoria/:slug", async (req, res)=>{
-    let session
-    if(req.session.user != undefined){
-        session = true
-    }
-    else{
-        session = false
-    }
+    let session = req.session.user != undefined ? true : false
     const slug = req.params.slug
     
     Category.findOne({

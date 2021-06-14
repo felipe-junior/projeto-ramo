@@ -6,13 +6,7 @@ const formatDate = require('../public/js/formatDate')
 
 //Rotas get
 Router.get("/", async (req, res)=>{
-  let session
-    if(req.session.user != undefined){
-        session = true
-    }
-    else{
-        session = false
-    }
+  let session = req.session.user != undefined ? true : false
   const limit = 20
   const offset = 0
    Question.findAndCountAll({
@@ -38,13 +32,7 @@ Router.get("/", async (req, res)=>{
 })
 
 Router.get("/page/:id", async (req, res)=>{
-  let session
-    if(req.session.user != undefined){
-        session = true
-    }
-    else{
-        session = false
-    }
+  let session = req.session.user != undefined ? true : false
   let id = req.params.id
   if(id==undefined || id<=0){// Caso o usuario nao passe o parametro id
     id=1
