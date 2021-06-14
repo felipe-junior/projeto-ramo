@@ -582,9 +582,12 @@ footer{
     }
     /*---------- Home, Search and Categories content ----------*/
     .main-content#home, .main-content#search, .main-content#categories,
-     .main-content#new-ask, .main-content#new-category{
+     .main-content#new-ask, .main-content#new-category, .main-content#credits{
         margin-top: 0;
         border-radius: 0;
+    }
+     .main-content#credits{
+        height: 80vh;
     }
     .card-header{
         flex-direction: column;
@@ -659,10 +662,13 @@ footer{
     
     /*---------- Credits ----------------*/
     #credits ul{
-        padding: 4px;
+        padding: 20px;
     }
     #credits h1{
-        padding-left: 4px;
+        padding-left: 20px;
+    }
+    #credits img {
+        height: 20px;
     }
 
     /*---------- Footer ----------*/
