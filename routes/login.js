@@ -26,6 +26,9 @@ Router.post("/entrar", async (req, res)=>{
                 req.session.user = user.email
                 res.redirect(req.session.returnTo || "/")
             }
+            else{
+                res.redirect("/entrar") 
+            }
         }
         else{
             res.redirect("/entrar")
