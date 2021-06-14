@@ -120,7 +120,7 @@ main{
 }
 /*---------- Home, Search and Categories content ----------*/
 .main-content#home, .main-content#search, .main-content#categories,
- .main-content#new-ask, .main-content#new-category{
+ .main-content#new-ask, .main-content#new-category, .main-content#credits{
     margin-top: 40px;
     border-radius: 10px;
     overflow: hidden;
@@ -435,6 +435,26 @@ main{
     color: #088ca7;
 }
 
+#credits h1{
+    font-size: 20px;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+#credits ul{
+    padding: 20px;
+}
+#credits li{
+    margin-top: 10px;
+    line-height: 32px;
+    color: #096d5a;   
+}
+#credits li a img{
+    vertical-align: middle;
+}
+#credits li span{
+   padding-right: 10px;
+}
 .tinymce-menu-open{
     visibility: hidden!important;
     display: none;
@@ -637,6 +657,14 @@ footer{
     }
     /*---------- Login and Sign up  ----------*/
     
+    /*---------- Credits ----------------*/
+    #credits ul{
+        padding: 4px;
+    }
+    #credits h1{
+        padding-left: 4px;
+    }
+
     /*---------- Footer ----------*/
     footer{
         margin-top: 0;

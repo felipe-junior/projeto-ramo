@@ -9,7 +9,7 @@ const login = require("./login")
 const discussion = require("./discussion")
 const searchDiscussion = require("./searchDiscussion")
 const filterByCategory = require("./filterByCategory")
-
+const credits = require("./credits")
 routes.use("/", home)
 routes.use("/", register)
 routes.use("/", ask)
@@ -18,5 +18,6 @@ routes.use("/", login)
 routes.use("/", discussion)
 routes.use("/", searchDiscussion)
 routes.use("/", filterByCategory)
+routes.use("/", credits)
 
 module.exports = routes
