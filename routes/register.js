@@ -33,7 +33,7 @@ Router.post("/cadastrar", (req, res) =>{
                 email: email,
                 password: hash
             }).then(() =>{
-                req.session.user = user.email
+                req.session.user = email
                 res.redirect("/")
             })
         }else{
