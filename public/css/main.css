@@ -64,9 +64,8 @@ header{
     justify-content: space-between;
     align-items: center;
 }
-#navbar a#brand{
-    color: #096d5a;
-    font-size: 30px;
+.logo-header{
+    height: 50px;
 }
 .menu{
     display: flex;
@@ -471,8 +470,9 @@ footer{
     flex-direction: column;
     align-items: center;
 }
-#footer h2{
-    margin-bottom: 30px;
+.logo-footer{
+    height: 40px;
+    margin-bottom: 20px;
 }
 #footer ul{
     display: flex;
@@ -514,6 +514,9 @@ footer{
         padding: 0;
     }
     /*---------- Navbar ----------*/
+    .logo-header{
+        height: 40px;
+    }
     .menu{
         display: flex;
         flex-direction: column;
@@ -674,6 +677,9 @@ footer{
     /*---------- Footer ----------*/
     footer{
         margin-top: 0;
+    }
+    .logo-footer{
+        height: 30px;
     }
     #footer ul{
         flex-wrap: wrap;
