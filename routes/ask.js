@@ -37,7 +37,7 @@ Router.post("/salvarpergunta", askAuth ,async (req, res) =>{
         categoryId: c,
         loginId: id
     }).then(() =>{
-        res.redirect("/")
+        res.redirect("/discussao/"+ slugify(t))
     })
 })
 
