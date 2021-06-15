@@ -33,11 +33,12 @@ Router.post("/salvarpergunta", askAuth ,async (req, res) =>{
     await Question.create({
         title: t,
         description: d,
-        slug: slugify(t),
+        slug: slugify(t) + "-"+ id,
         categoryId: c,
         loginId: id
     }).then(() =>{
-        res.redirect("/discussao/"+ slugify(t))
+        const path = slugify(t) + "-"+ id
+        res.redirect("/discussao/" + path)
     })
 })
 

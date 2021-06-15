@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolforum - Home</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <%-include("partials/header.ejs") %>
+    
+    <main class="container">
+        <section class="main-content" id="home">
+            <div class="card-header">
+                <h1>Minhas perguntas</h1>
+                <a class="btn" href="/perguntar">Abrir pergunta</a>
+            </div>
+
+            <div class="card-body">
+                <% discussions.forEach((discussion)=>{ %>
+                    <div class="ask">
+                        <h3><a class="grid-ask-title" href="/discussao/<%=discussion.slug%>"><%= discussion.title %></a></h3>
+                        <div class="grid-ask-user">Perguntado por: <%=discussion?.login?.username%></div>
+                        
+                        <div class="grid-ask-category">
+                            <a class="btn btn-category" 
+                            href="/categoria/<%= discussion.category.slug %>"
+                            ><%= discussion.category.title %></a>
+                        </div>
+                        
+                        <div class="grid-ask-date"><%=result.formatDate(discussion.createdAt) %></div>
+                    </div>
+                <% }) %>
+                   
+                    <div class="pagination">
+                        <% if(result.page > 2) {%>
+                                <a href="/minhas-perguntas/page/<%= result.page - 1 %>"> << anterior</a>
+                        <%  }else if(result.page === 2){ %>
+                                <a href="/minhas-perguntas"> << anterior</a>
+                        <%  } %>
+                    
+                        <% if(result.next === true) {%>
+                            <a href="/minhas-perguntas/page/<%= result.page + 1 %>">próximo >></a>
+                        <% }%>
+                    </div>
+                </div>
+            
+            </div>
+
+        </div>            
+    </main>
+
+    <%-include("partials/footer.ejs") %>
+</body>
+</html>

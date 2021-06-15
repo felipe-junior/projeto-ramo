@@ -1,6 +1,7 @@
 const Router = require("express").Router()
 const Category = require("../database/models/category")
 const slugify = require("slugify")
+const askAuth = require("../middleware/askAuth")
 
 //Rotas Get
 Router.get("/categorias", (req, res) => {
@@ -52,7 +53,7 @@ Router.get("/categorias/novo", (req, res)=>{
 })
 
 //Rota Post
-Router.post("/salvarcategoria", (req, res)=>{
+Router.post("/salvarcategoria", askAuth, (req, res)=>{
     let t = req.body.title;
     if(t != ""){
         Category.create({
