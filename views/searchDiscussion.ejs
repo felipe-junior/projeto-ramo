@@ -23,7 +23,7 @@
                 <% questions.forEach((discussion)=>{ %>
                     <div class="ask">
                         <h3><a class="grid-ask-title" href="/discussao/<%=discussion.slug%>"><%= discussion.title %></a></h3>
-                        <div class="grid-ask-user">Perguntado por: Usuário</div>
+                        <div class="grid-ask-user">Perguntado por: <%=discussion?.login?.username%></div>
 
                         <div class="grid-ask-category"><a class="btn btn-category" href="/categoria/<%= discussion.category.slug %>"><%= discussion.category.title %></a></div>
                         <div class="grid-ask-date"><%=result.date(discussion.createdAt) %></div>
