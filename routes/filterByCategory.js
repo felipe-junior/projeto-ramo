@@ -18,15 +18,6 @@ Router.get("/categoria/:slug", async (req, res)=>{
     } else{
         res.redirect("/")
     }
-    
-
-    Category.findOne({
-        where: {
-            slug: slug
-        }, 
-        include: [{model: Question}]
-    }).then(category =>{
         
-    })        
 })
 module.exports = Router
