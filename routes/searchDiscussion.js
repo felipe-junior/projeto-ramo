@@ -4,6 +4,7 @@ const Category = require("../database/models/category")
 const slugify = require("slugify")
 const {Op} = require("sequelize")
 const formatDate = require("../public/js/formatDate")
+const User = require("../database/models/login")
 
 Router.post("/pesquisardiscussao", (req, res)=>{
     let search = req.body.search.trim()
@@ -26,7 +27,7 @@ Router.get("/pesquisa/:slug", (req,res)=>{
     let slug = req.params.slug
     let title = slug.split("-").join(" ")
     Question.findAndCountAll({
-        include:[{model: Category}],
+        include:[{model: Category}, {model:User}],
         order:[['id', 'DESC']],
         where: {
             title: {

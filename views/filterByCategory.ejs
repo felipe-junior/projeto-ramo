@@ -22,7 +22,7 @@
                 <% discussions.forEach((discussion)=>{ %>
                     <div class="ask">
                         <h3><a class="grid-ask-title" href="/discussao/<%=discussion.slug%>"><%= discussion.title %></a></h3>
-                        <div class="grid-ask-user">Perguntado por: Usuário</div> 
+                        <div class="grid-ask-user">Perguntado por: <%=discussion?.login?.username%></div> 
                         <!-- AINDA FALTA LINKAR O USER -->
                         <div class="grid-ask-category">
                             <a class="btn btn-category" 
