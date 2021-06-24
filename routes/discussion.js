@@ -9,6 +9,9 @@ const User = require("../database/models/login")
 Router.get("/discussao/:slug", async (req, res)=>{
     let session = req.session.user != undefined ? true : false
 
+    let descriptionError = req.flash("descriptionError")
+    descriptionError = (descriptionError == undefined || descriptionError.length == 0) ? undefined : descriptionError
+
     req.session.returnTo = req.originalUrl
     const {slug} = req.params
     const id = 1
@@ -28,7 +31,7 @@ Router.get("/discussao/:slug", async (req, res)=>{
                     page: parseInt(id),
                     slug
                 }
-                res.render("discussion", {ask, answers: answers.rows, result, session}) 
+                res.render("discussion", {ask, answers: answers.rows, result, session, descriptionError}) 
             })
         }
         else{
@@ -41,6 +44,9 @@ Router.get("/discussao/:slug/page/:id", async (req, res)=>{
     let session = req.session.user != undefined ? true : false
     req.session.returnTo = req.originalUrl
     const {slug, id} = req.params
+
+    let descriptionError = req.flash("descriptionError")
+    descriptionError = (descriptionError == undefined || descriptionError.length == 0) ? undefined : descriptionError
     
     await Question.findOne({where:{slug}, include: {model: User}}).then(ask=>{
         if(ask != undefined){
@@ -58,7 +64,7 @@ Router.get("/discussao/:slug/page/:id", async (req, res)=>{
                     page: parseInt(id),
                     slug
                 }
-                res.render("discussion", {ask, answers: answers.rows, result, session}) 
+                res.render("discussion", {ask, answers: answers.rows, result, session, descriptionError}) 
             })
         }
         else{
@@ -78,13 +84,22 @@ Router.post("/salvaresposta", askAuth,async (req, res)=>{
     await User.findOne({where: {email: email}}).then(value =>{
         id = value.id
     })
-    Answer.create({
-        description,
-        questionId: askId,
-        loginId: id
-    }).then(()=>{
+
+    if(description == undefined || description == ""){
+        req.flash("descriptionError", "O campo de resposta precisa ser preenchido")
         res.redirect("/discussao/" + askSlug)
-    })
+    }
+    else{
+        Answer.create({
+            description,
+            questionId: askId,
+            loginId: id
+        }).then(()=>{
+            res.redirect("/discussao/" + askSlug)
+        })
+    }
+
+    
 })
 
 //Falta o metodo delete, usar como base o codigo do arquivo perguntar para atualizar a quantidade de perguntas de uma categoria!
