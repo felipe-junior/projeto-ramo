@@ -2,6 +2,8 @@ const Router = require("express").Router()
 const User = require("../database/models/login")
 const bcrypt = require("bcryptjs")
 const login = require("../database/models/login")
+const flash = require("express-flash")
+
 //const Categories = require("../database/models/")
 
 Router.get("/entrar", (req, res)=>{
@@ -48,31 +50,114 @@ Router.get("/esqueceu-sua-senha", async (req, res)=>{
         res.redirect("/")
     }
     else{
+        let errorUser = req.flash("errorUser")
+        let errorEmail = req.flash("errorEmail")
+        let errorPassword = req.flash("errorPassword")
+        let username = req.flash("username")
+        let email = req.flash("email")
+        let password = req.flash("password")
+        let confirmPassword = req.flash("confirmPassword")
+        
+        //Erros
+        errorUser = (errorUser == undefined || errorUser.length == 0) ? undefined : errorUser 
+        errorEmail = (errorEmail == undefined || errorEmail.length == 0) ? undefined : errorEmail
+        errorPassword = (errorPassword == undefined || errorPassword.length == 0) ? undefined : errorPassword
+
+        //Campos dos inputs
+        username = (username == undefined || username.length == 0) ? "" : username 
+        email = (email == undefined || email.length == 0) ? "" : email 
+        password = (password == undefined || password.length == 0) ? "" : password 
+        confirmPassword = (confirmPassword == undefined || confirmPassword.length == 0) ? "" : confirmPassword 
+
         let session = false
-        let registers = await login.findAll()
-        res.render("forgottenPassword", {session, registers}) 
+        res.render("forgottenPassword", {session, errorUser, errorEmail, errorPassword, username,email,password,confirmPassword}) 
     }
     
 })
 
-Router.post("/alterar-senha", (req, res)=>{
-    let {email, password} = req.body
+Router.post("/alterar-senha", async (req, res)=>{
+    let {username, email, password, confirmPassword} = req.body
+    let errorUser, errorEmail, errorPassword
 
-    login.findOne({where:{email}}).then(user=>{
-        if(user != undefined){
-            let salt = bcrypt.genSaltSync(10)
-            let hash = bcrypt.hashSync(password, salt)
+    let users = await login.findAll()
 
-            user.update({
-                password: hash
-            }).then(()=>{
-                req.session.user = user.email
-                res.redirect("/")
-            })
+    //Username
+    if(username == undefined || username == ""){
+        errorUser = "Os campos não podem ser vazios"
+    }
+    else{
+        let user = users.find(u => u.username == username)
+
+        if(user == undefined){
+            errorUser = "Nome de usuário incorreto ou não existe"
+        }
+    }
+
+    //Email
+    if(email == undefined || email == ""){
+        errorEmail = "Os campos não podem ser vazios"
+    }
+    else{
+        let user = users.find(u => u.email == email)
+
+        if(user == undefined){
+            errorEmail = "E-mail incorreto ou não existe"
+        }
+    }
+
+    //Same account - username and email
+    if(errorUser == undefined && errorEmail == undefined){
+        let user = users.find(u => u.username == username)
+
+        if(user.email != email){
+            errorEmail = "Conta inválida ou não cadastrada"
+        }
+    }
+
+    //Password
+    if(password == undefined || password == "" || confirmPassword == undefined || confirmPassword == ""){
+        errorPassword = "Os campos não podem ser vazios"
+    }
+    else{
+        if(password.length < 8 || confirmPassword.length < 8){
+            errorPassword = "A senha deve ter 8 ou mais caracteres"
         }
         else{
-            res.redirect("/")
+            if(password != confirmPassword){
+                errorPassword = "As senhas não estão iguais"
+            }
         }
-    })
+    }
+
+    if(errorUser != undefined || errorEmail != undefined || errorPassword != undefined){
+        req.flash("errorUser", errorUser)
+        req.flash("errorEmail", errorEmail)
+        req.flash("errorPassword", errorPassword)
+        req.flash("username", username)
+        req.flash("email", email)
+        req.flash("password", password)
+        req.flash("confirmPassword", confirmPassword)
+        res.redirect("/esqueceu-sua-senha")
+    }
+    else{
+        login.findOne({where:{email}}).then(u=>{
+            if(u != undefined){
+                let salt = bcrypt.genSaltSync(10)
+                let hash = bcrypt.hashSync(password, salt)
+
+                u.update({
+                    password: hash
+                }).then(()=>{
+                    req.session.user = u.email
+                    res.redirect("/")
+                })
+            }
+            else{
+                res.redirect("/esqueceu-sua-senha")
+            }
+        })
+    }
+
+    
 })
 module.exports = Router
