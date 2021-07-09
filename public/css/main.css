@@ -665,17 +665,6 @@ footer{
         font-size: 14px;
     }
     /*---------- Login and Sign up  ----------*/
-    
-    /*---------- Credits ----------------*/
-    #credits ul{
-        padding: 20px;
-    }
-    #credits h1{
-        padding-left: 20px;
-    }
-    #credits img {
-        height: 20px;
-    }
 
     /*---------- Footer ----------*/
     footer{
