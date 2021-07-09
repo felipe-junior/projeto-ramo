@@ -37,7 +37,7 @@ Estes foram todos os contribuidores que participaram no projeto:
 - [João Reis](https://github.com/jvrreis)
 
 ---
-## 📂 Como instalar o projeto
+## 📂 Como instalar e utilizar o projeto
 <br>
 Você pode instalá-lo com o Git utilizando o comando:
 
@@ -52,13 +52,15 @@ Feito isso, podemos executar os seguintes passos:
 
 1. Crie um banco de dados chamado <span style="color:yellow;">"projetoramo"</span>, ou crie um banco com outro nome e vá no arquivo <span style="color:yellow;">"database/databaseConfig.js"</span> e altere o metodo database para o nome do seu banco.
 
-2. Abra o CMD ou PowerShell e entre no diretório do projeto.
+2. Vá na pasta **database** do projeto e crie um arquivo <span style="color:yellow;">password.json</span>, escreva neste arquivo { "password": "[sua senha do database]" }
 
-3. Execute o comando **<span style="color:yellow;">node</span> index.js**.
+3. Abra o CMD ou PowerShell e entre no diretório do projeto.
 
-4. Acesse a rota https://localhost:8080
+4. Execute o comando **<span style="color:yellow;">node</span> index.js**.
 
-5. Pronto, agora sua aplicação está rodando !
+5. Acesse a rota https://localhost:8080
+
+6. Pronto, agora sua aplicação está rodando !
 
 ---
 🚀 Projetado e desenvolvido por: Lucas Farolfi, Felipe Júnior, Cleyton Prado e João Reis.
