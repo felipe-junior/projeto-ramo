@@ -32,9 +32,9 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 Estes foram todos os contribuidores que participaram no projeto:
 
 - [Felipe Júnior](https://github.com/felipe-junior)
-- [Lucas Farolfi](https://github.com/felipe-junior)
-- [Cleyton Prado](https://github.com/felipe-junior)
-- [João Reis](https://github.com/felipe-junior)
+- [Lucas Farolfi](https://github.com/lucasfarolfi)
+- [Cleyton Prado](https://github.com/Cleytonpsf)
+- [João Reis](https://github.com/jvrreis)
 
 ---
 ## 📂 Como instalar o projeto
@@ -43,7 +43,7 @@ Você pode instalá-lo com o Git utilizando o comando:
 
 ```
 
-git clone https://github.com/lucasfarolfi/BestSitters-Landing-Page.git
+git clone https://github.com/felipe-junior/projeto-ramo.git
 
 ```
 Após isso, é <span style="color:red;">necessário</span> que você tenha instalado na sua máquina o <span style="color:red;">MySQL</span>. Também será <span style="color:red;">necessário</span> ter instalado o <span style="color:red;">NodeJs</span> em sua máquina para a execução do servidor da aplicação.
