@@ -1,9 +1,29 @@
+const Category = require("../models/category")
+const Question = require("../models/question")
+const formatDate = require("../public/js/formatDate")
 const Router = require("express").Router()
-const Category = require("../database/models/category")
+const User = require("../models/login")
 const slugify = require("slugify")
 const askAuth = require("../middleware/askAuth")
 
-//Rotas Get
+//Página de discussões de uma categoria
+Router.get("/categoria/:slug", async (req, res)=>{
+    let session = req.session.user != undefined ? true : false
+    const slug = req.params.slug
+    
+    let category = await Category.findOne({where:{slug}})
+
+    if(category!=undefined){
+        let discussions = await Question.findAll({
+            where:{categoryId: category.id}, include: [{model:Category}, {model: User}], order:[['id','DESC']]
+        })
+        res.render("filterByCategory", {discussions, formatDate, category, session})
+    } else{
+        res.redirect("/")
+    }
+})
+
+//Página de categorias
 Router.get("/categorias", (req, res) => {
     let id = 1
     const limit = 10
@@ -24,6 +44,7 @@ Router.get("/categorias", (req, res) => {
     })
 })
 
+//Página de categorias com paginação
 Router.get("/categoria/page/:id", async (req, res)=>{
     let session = req.session.user != undefined ? true : false
 
@@ -47,12 +68,13 @@ Router.get("/categoria/page/:id", async (req, res)=>{
     })
 })
 
+//Página de criar categoria
 Router.get("/categorias/novo", (req, res)=>{
     let session = req.session.user != undefined ? true : false
     res.render("newCategory", {session})
 })
 
-//Rota Post
+//Salvar cateogoria
 Router.post("/salvarcategoria", askAuth, (req, res)=>{
     let t = req.body.title;
     if(t != ""){
@@ -67,6 +89,5 @@ Router.post("/salvarcategoria", askAuth, (req, res)=>{
         res.redirect("/categorias/novo")
     }
 })
-
 
 module.exports = Router

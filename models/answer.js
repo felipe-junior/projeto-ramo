@@ -1,5 +1,5 @@
 const sq = require("sequelize")
-const loginConnection = require("../databaseConfig")
+const loginConnection = require("../database/databaseConfig")
 const question = require("./question")
 const user = require("./login")
 

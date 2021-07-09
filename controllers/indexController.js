@@ -1,11 +1,75 @@
 const Router = require("express").Router()
-const Question = require("../database/models/question")
-const Category = require("../database/models/category")
+const Category = require('../models/category')
+const User = require("../models/login")
+const Question = require('../models/question')
+const formatDate = require('../public/js/formatDate')
 const slugify = require("slugify")
 const {Op} = require("sequelize")
-const formatDate = require("../public/js/formatDate")
-const User = require("../database/models/login")
 
+//Home
+Router.get("/", async (req, res)=>{
+  let session = req.session.user != undefined ? true : false
+  const limit = 20
+  const offset = 0
+   Question.findAndCountAll({
+    order:[['id', 'DESC']],
+    include: [{model: Category}, {model: User}],
+    offset: offset, 
+    limit:limit,
+     //raw: true    //Foi o que tava dando problema no JOIN antes
+  }).then(discussions =>{
+    let next
+    if(offset + limit >= discussions.count){
+      next= false
+    } else{
+      next= true
+    }
+    const result = {
+      next: next,
+      page: 1,
+      formatDate: formatDate
+    }
+    res.render("index", {discussions: discussions.rows, result, session})
+  })
+})
+
+//Home com paginação
+Router.get("/page/:id", async (req, res)=>{
+  let session = req.session.user != undefined ? true : false
+  let id = req.params.id
+  if(id==undefined || id<=0){// Caso o usuario nao passe o parametro id
+    id=1
+  } 
+  if(isNaN(id)){
+    res.status(404).send("pagina nao encontrada")
+    return
+  }
+  const limit = 20
+  const offset = id * limit -limit
+  
+  Question.findAndCountAll({
+    order:[['id', 'DESC']],
+    include: [{model: Category}],
+    offset: offset, 
+    limit:limit
+    }).then(discussions =>{
+    let next
+    if(offset + limit >= discussions.count){
+      next= false
+    } else{
+      next= true
+    }
+    
+    const result = {
+      next: next,
+      page: parseInt(id),
+      formatDate: formatDate
+    }
+    res.render("index", {discussions: discussions.rows, result, session})
+  })
+})
+
+//Pesquisar discussão
 Router.post("/pesquisardiscussao", (req, res)=>{
     let search = req.body.search.trim()
     if(search == ""){
@@ -19,7 +83,7 @@ Router.post("/pesquisardiscussao", (req, res)=>{
     
 })
 
-//Rotas Get
+//Página de pesquisa
 Router.get("/pesquisa/:slug", (req,res)=>{
     let session = req.session.user != undefined ? true : false
     const limit = 20
@@ -54,6 +118,8 @@ Router.get("/pesquisa/:slug", (req,res)=>{
     })
    
 })
+
+//Página de pesquisa com paginação
 Router.get("/pesquisa/:slug/page/:id", (req,res)=>{
     let session = req.session.user != undefined ? true : false
 
@@ -97,6 +163,13 @@ Router.get("/pesquisa/:slug/page/:id", (req,res)=>{
         res.render("searchDiscussion", {questions: questions.rows, title, result, session})
     })
    
+})
+
+//Créditos
+Router.get("/creditos", (req, res)=>{
+    let session = req.session.user != undefined ? true : false
+
+    res.render("credits", {session})
 })
 
 module.exports = Router

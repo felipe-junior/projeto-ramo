@@ -1,4 +1,4 @@
-const loginConnection = require("../databaseConfig")
+const loginConnection = require("../database/databaseConfig")
 const sq = require("sequelize")
 const category = require("./category");
 const user = require("./login");

@@ -1,4 +1,4 @@
-const Category = require("./database/models/category")
+const Category = require("./models/category")
 
 async function initialCategories(){
   await Category.count().then(count =>{

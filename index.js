@@ -32,7 +32,7 @@ app.use(session({
 }))
 app.use(flash())
 
-app.use("/", require("./routes/index")) // A rota index é responsavel por importar todas as rotas
+app.use("/", require("./routes/routes")) // A rota index é responsavel por importar todas as rotas
 
 app.listen(port, ()=>{
     console.log("O servidor está rodando...")

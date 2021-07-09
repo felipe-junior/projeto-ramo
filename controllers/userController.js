@@ -1,11 +1,8 @@
 const Router = require("express").Router()
-const User = require("../database/models/login")
+const User = require("../models/login")
 const bcrypt = require("bcryptjs")
-const login = require("../database/models/login")
-const flash = require("express-flash")
 
-//const Categories = require("../database/models/")
-
+//Página de entrar
 Router.get("/entrar", (req, res)=>{
     if(req.session.user != undefined){
         res.redirect("/")
@@ -16,6 +13,8 @@ Router.get("/entrar", (req, res)=>{
     }
     
 })
+
+//Entrar
 Router.post("/entrar", async (req, res)=>{
     
     const {password, email} = req.body
@@ -38,6 +37,7 @@ Router.post("/entrar", async (req, res)=>{
     })   
 })
 
+//Rota de logout
 Router.get("/sair", (req, res)=>{
     req.session.user = undefined
 
@@ -72,14 +72,14 @@ Router.get("/esqueceu-sua-senha", async (req, res)=>{
         let session = false
         res.render("forgottenPassword", {session, errorUser, errorEmail, errorPassword, username,email,password,confirmPassword}) 
     }
-    
 })
 
+//Alterar senha
 Router.post("/alterar-senha", async (req, res)=>{
     let {username, email, password, confirmPassword} = req.body
     let errorUser, errorEmail, errorPassword
 
-    let users = await login.findAll()
+    let users = await User.findAll()
 
     //Username
     if(username == undefined || username == ""){
@@ -140,7 +140,7 @@ Router.post("/alterar-senha", async (req, res)=>{
         res.redirect("/esqueceu-sua-senha")
     }
     else{
-        login.findOne({where:{email}}).then(u=>{
+        User.findOne({where:{email}}).then(u=>{
             if(u != undefined){
                 let salt = bcrypt.genSaltSync(10)
                 let hash = bcrypt.hashSync(password, salt)
@@ -157,7 +157,48 @@ Router.post("/alterar-senha", async (req, res)=>{
             }
         })
     }
+})
 
+//Página de Cadastro
+Router.get("/cadastrar", (req, res)=>{
+    if(req.session.user != undefined){
+        res.redirect("/")
+    }
+    else{
+        let session = false
+        User.findAll().then(registers =>{
+            res.render("register", {registers, session})
+        })
+    }
     
 })
+
+//Cadastrar usuário
+Router.post("/cadastrar", (req, res) =>{
+    let username = req.body.user
+    let email = req.body.email
+    let password = req.body.password
+    
+    User.findOne({
+        where:{
+            email: email
+        }
+    }).then(user =>{
+        if(user == undefined){
+            let salt = bcrypt.genSaltSync(10)
+            let hash = bcrypt.hashSync(password, salt)
+            User.create({
+                username: username,
+                email: email,
+                password: hash
+            }).then(() =>{
+                req.session.user = email
+                res.redirect("/")
+            })
+        }else{
+            res.redirect("/cadastrar")
+        }
+    })
+})
+
 module.exports = Router
