@@ -64,9 +64,8 @@ header{
     justify-content: space-between;
     align-items: center;
 }
-#navbar a#brand{
-    color: #096d5a;
-    font-size: 30px;
+.logo-header{
+    height: 50px;
 }
 .menu{
     display: flex;
@@ -435,25 +434,28 @@ main{
     color: #088ca7;
 }
 
-#credits h1{
-    font-size: 20px;
-    padding-top: 20px;
-    padding-left: 20px;
-}
-
 #credits ul{
     padding: 20px;
 }
 #credits li{
-    margin-top: 10px;
-    line-height: 32px;
-    color: #096d5a;   
+    margin-bottom: 25px;
 }
-#credits li a img{
-    vertical-align: middle;
+#credits a{
+    color: #088b7e;
+    font-size: 18px;
 }
-#credits li span{
-   padding-right: 10px;
+#credits a:hover{
+    color: #085e69;
+    text-decoration: underline;
+}
+#credits a > div{
+    font-size: 15px;
+    margin-top: 8px;
+}
+#credits a > img{
+    width: 18px;
+    vertical-align: top;
+    margin-left: 8px;
 }
 .tinymce-menu-open{
     visibility: hidden!important;
@@ -471,8 +473,9 @@ footer{
     flex-direction: column;
     align-items: center;
 }
-#footer h2{
-    margin-bottom: 30px;
+.logo-footer{
+    height: 40px;
+    margin-bottom: 20px;
 }
 #footer ul{
     display: flex;
@@ -514,6 +517,9 @@ footer{
         padding: 0;
     }
     /*---------- Navbar ----------*/
+    .logo-header{
+        height: 40px;
+    }
     .menu{
         display: flex;
         flex-direction: column;
@@ -659,21 +665,13 @@ footer{
         font-size: 14px;
     }
     /*---------- Login and Sign up  ----------*/
-    
-    /*---------- Credits ----------------*/
-    #credits ul{
-        padding: 20px;
-    }
-    #credits h1{
-        padding-left: 20px;
-    }
-    #credits img {
-        height: 20px;
-    }
 
     /*---------- Footer ----------*/
     footer{
         margin-top: 0;
+    }
+    .logo-footer{
+        height: 30px;
     }
     #footer ul{
         flex-wrap: wrap;

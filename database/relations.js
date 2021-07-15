@@ -1,7 +1,7 @@
-const answer = require("./models/answer");
-const category = require("./models/category");
-const user = require("./models/login");
-const question = require("./models/question");
+const answer = require("../models/answer");
+const category = require("../models/category");
+const user = require("../models/login");
+const question = require("../models/question");
 
 
 

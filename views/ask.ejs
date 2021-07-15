@@ -7,6 +7,7 @@
     <title>Nova Pergunta</title>
 
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="icon" href="../assets/favicon.ico">
 </head>
 
 <body>
@@ -16,14 +17,20 @@
         <section class="main-content" id="new-ask">
             <h1>Faça uma nova pergunta</h1> <!--Troquei para H1, pois influencia na pesquisa dos sites no google, portanto é uma boa prática-->
 
-            <form action="/salvarpergunta" method="post" onsubmit="confirmDelete(event, this)">
+            <form action="/salvarpergunta" method="post">
                 <div id="title">
                     <label>Título da pergunta</label>
-                    <input placeholder="Digite o título" type="text" name="title" required>
+                    <input placeholder="Digite o título" type="text" name="title" value="<%= title %>" required>
+                    <% if(titleError != undefined){ %>
+                        <div style="color: red; font-size: 14px; margin-top: 5px;"><%=titleError%></div>
+                    <% } %>
                 </div>
                 <div id="description">
                     <label >Descrição</label>
-                    <textarea name="description" id="description_ask"></textarea>
+                    <textarea name="description" id="description_ask"<%= description %>></textarea>
+                    <% if(descrError != undefined){ %>
+                        <div style="color: red; font-size: 14px; margin-top: 5px;"><%=descrError%></div>
+                    <% } %>
                 </div>
                 
                 <div id="categories">
